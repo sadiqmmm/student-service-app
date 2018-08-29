@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-router",
+  "name": "devcamp-student-service-app",
   "version": "1.0.0",
-  "description": "Basic skeleton codebase for React/Redux/Router applications.",
+  "description": "Provides dashboard for managing projects for the Bottega Code School",
   "scripts": {
     "postinstall": "cp env.example.js env.js",
     "start": "webpack-dev-server --config webpack/dev.config.js --watch",
@@ -34,6 +34,7 @@
   "dependencies": {
     "ajv": "^5.5.2",
     "autoprefixer": "^9.1.0",
+    "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^7.2.3",
