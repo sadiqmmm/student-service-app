@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./views/homepage";
+import Dashboard from "./views/dashboard";
 import NoMatch from "./views/no-match";
 import NavLinks from "./partials/navigation";
 
@@ -20,6 +21,7 @@ export default class App extends Component {
             <NavLinks />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route path="/dashboard" component={Dashboard} />
               <Route component={NoMatch} />
             </Switch>
           </div>
