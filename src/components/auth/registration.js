@@ -23,9 +23,9 @@ export default class Registration extends Component {
     // Build out auth process and endpoint
     axios
       .post(
-        "https://devcamp-student-service.herokuapp.com/",
+        "https://api.devcamp.space/clients",
         {
-          user: {
+          client: {
             email: this.state.email,
             password: this.state.password,
             password_confirmation: this.state.password_confirmation
@@ -55,8 +55,6 @@ export default class Registration extends Component {
       <div className="registrationFormWrapper">
         <div className="card">
           <div className="homepageQuote">
-            Pearson's Law: "That which is measured improves. That which is
-            measured and reported improves exponentially."
             <form onSubmit={this.handleSubmit} className="formWrapper">
               <input
                 type="text"
