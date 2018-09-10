@@ -36,16 +36,10 @@ export default class Registration extends Component {
       .then(response => {
         this.props.handleSuccessfulRegistration(response.data);
       })
-      .catch(function(error) {
-        // TODO
-        console.log(error);
+      .catch(error => {
+        this.props.handleUnSuccessfulRegistration(error);
       });
 
-    console.log("A name was submitted: " + this.state.email);
-    console.log("A password was submitted: " + this.state.password);
-    console.log(
-      "A password conf was submitted: " + this.state.password_confirmation
-    );
     event.preventDefault();
   }
 

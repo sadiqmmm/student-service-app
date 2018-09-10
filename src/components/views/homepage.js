@@ -4,16 +4,29 @@ import Registration from "../auth/registration";
 export default class Homepage extends Component {
   constructor(props) {
     super(props);
-    console.log("Props", props.history);
+
+    this.state = {
+      errorMessage: null
+    };
 
     this.handleSuccessfulRegistration = this.handleSuccessfulRegistration.bind(
+      this
+    );
+
+    this.handleUnSuccessfulRegistration = this.handleUnSuccessfulRegistration.bind(
       this
     );
   }
 
   handleSuccessfulRegistration(e) {
-    console.log("HANDLINGGGGG", e);
     this.props.history.push("/dashboard");
+  }
+
+  handleUnSuccessfulRegistration(errorMessage) {
+    this.setState({
+      errorMessage:
+        "There was an error processing your registration, please try again."
+    });
   }
 
   render() {
@@ -21,8 +34,11 @@ export default class Homepage extends Component {
       <div>
         <h1>Homepage</h1>
 
+        <div>{this.state.errorMessage}</div>
+
         <Registration
           handleSuccessfulRegistration={this.handleSuccessfulRegistration}
+          handleUnSuccessfulRegistration={this.handleUnSuccessfulRegistration}
         />
       </div>
     );
