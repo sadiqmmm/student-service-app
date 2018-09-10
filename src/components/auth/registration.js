@@ -7,7 +7,8 @@ export default class Registration extends Component {
     this.state = {
       email: "",
       password: "",
-      password_confirmation: ""
+      password_confirmation: "",
+      subdomain: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,7 +27,8 @@ export default class Registration extends Component {
           client: {
             email: this.state.email,
             password: this.state.password,
-            password_confirmation: this.state.password_confirmation
+            password_confirmation: this.state.password_confirmation,
+            subdomain: this.state.subdomain
           }
         },
         { withCredentials: true }
@@ -48,10 +50,17 @@ export default class Registration extends Component {
           <div className="homepageQuote">
             <form onSubmit={this.handleSubmit} className="formWrapper">
               <input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="Email"
                 value={this.state.email}
+                onChange={this.handleChange}
+              />
+              <input
+                type="text"
+                name="subdomain"
+                placeholder="Subdomain"
+                value={this.state.subdomain}
                 onChange={this.handleChange}
               />
               <input
