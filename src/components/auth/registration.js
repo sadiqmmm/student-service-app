@@ -33,9 +33,8 @@ export default class Registration extends Component {
         },
         { withCredentials: true }
       )
-      .then(function(response) {
-        // TODO
-        console.log(response);
+      .then(response => {
+        this.props.handleSuccessfulRegistration(response.data);
       })
       .catch(function(error) {
         // TODO
