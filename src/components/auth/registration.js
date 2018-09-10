@@ -19,8 +19,6 @@ export default class Registration extends Component {
   }
 
   handleSubmit(event) {
-    // TODO
-    // Build out auth process and endpoint
     axios
       .post(
         "https://api.devcamp.space/clients",
