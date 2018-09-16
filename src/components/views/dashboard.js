@@ -33,7 +33,12 @@ export default class Dashboard extends Component {
 
   render() {
     const projects = this.state.projects.map(project => {
-      return <div key={project.id}>{project.title}</div>;
+      return (
+        <div key={project.id}>
+          <h2>{project.title}</h2>
+          <img src={project.logo} alt={project.language} />
+        </div>
+      );
     });
 
     return (
