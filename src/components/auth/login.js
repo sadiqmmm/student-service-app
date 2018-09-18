@@ -30,10 +30,10 @@ export default class Login extends Component {
         { withCredentials: true }
       )
       .then(response => {
-        this.props.handleSuccessfulLogin(response.data);
+        this.props.handleSuccessfulAuth(response.data);
       })
       .catch(error => {
-        this.props.handleUnSuccessfulLogin(error);
+        this.props.handleUnSuccessfulAuth(error);
       });
 
     event.preventDefault();

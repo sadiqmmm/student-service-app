@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Registration from "../auth/registration";
+import Login from "../auth/login";
 
 export default class Homepage extends Component {
   constructor(props) {
@@ -9,20 +10,16 @@ export default class Homepage extends Component {
       errorMessage: null
     };
 
-    this.handleSuccessfulRegistration = this.handleSuccessfulRegistration.bind(
-      this
-    );
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
 
-    this.handleUnSuccessfulRegistration = this.handleUnSuccessfulRegistration.bind(
-      this
-    );
+    this.handleUnSuccessfulAuth = this.handleUnSuccessfulAuth.bind(this);
   }
 
-  handleSuccessfulRegistration(e) {
+  handleSuccessfulAuth(e) {
     this.props.history.push("/dashboard");
   }
 
-  handleUnSuccessfulRegistration(errorMessage) {
+  handleUnSuccessfulAuth(errorMessage) {
     this.setState({
       errorMessage:
         "There was an error processing your registration, please try again."
@@ -36,9 +33,14 @@ export default class Homepage extends Component {
 
         <div>{this.state.errorMessage}</div>
 
+        <Login
+          handleSuccessfulAuth={this.handleSuccessfulAuth}
+          handleUnSuccessfulAuth={this.handleUnSuccessfulAuth}
+        />
+
         <Registration
-          handleSuccessfulRegistration={this.handleSuccessfulRegistration}
-          handleUnSuccessfulRegistration={this.handleUnSuccessfulRegistration}
+          handleSuccessfulAuth={this.handleSuccessfulAuth}
+          handleUnSuccessfulAuth={this.handleUnSuccessfulAuth}
         />
       </div>
     );

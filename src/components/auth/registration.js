@@ -34,10 +34,10 @@ export default class Registration extends Component {
         { withCredentials: true }
       )
       .then(response => {
-        this.props.handleSuccessfulRegistration(response.data);
+        this.props.handleSuccessfulAuth(response.data);
       })
       .catch(error => {
-        this.props.handleUnSuccessfulRegistration(error);
+        this.props.handleUnSuccessfulAuth(error);
       });
 
     event.preventDefault();
