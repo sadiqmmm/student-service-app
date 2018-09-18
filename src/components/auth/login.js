@@ -20,22 +20,20 @@ export default class Login extends Component {
   handleSubmit(event) {
     axios
       .post(
-        "https://api.devcamp.space/clients",
+        "https://api.devcamp.space/sessions",
         {
           client: {
             email: this.state.email,
-            password: this.state.password,
-            password_confirmation: this.state.password_confirmation,
-            subdomain: this.state.subdomain
+            password: this.state.password
           }
         },
         { withCredentials: true }
       )
       .then(response => {
-        this.props.handleSuccessfulRegistration(response.data);
+        this.props.handleSuccessfulLogin(response.data);
       })
       .catch(error => {
-        this.props.handleUnSuccessfulRegistration(error);
+        this.props.handleUnSuccessfulLogin(error);
       });
 
     event.preventDefault();
@@ -54,13 +52,7 @@ export default class Login extends Component {
                 value={this.state.email}
                 onChange={this.handleChange}
               />
-              <input
-                type="text"
-                name="subdomain"
-                placeholder="Subdomain"
-                value={this.state.subdomain}
-                onChange={this.handleChange}
-              />
+
               <input
                 type="password"
                 name="password"
@@ -68,13 +60,7 @@ export default class Login extends Component {
                 value={this.state.password}
                 onChange={this.handleChange}
               />
-              <input
-                type="password"
-                name="password_confirmation"
-                placeholder="Confirm password"
-                value={this.state.password_confirmation}
-                onChange={this.handleChange}
-              />
+
               <button type="submit">Register</button>
             </form>
           </div>
