@@ -1,11 +1,13 @@
-const loggedIn = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-  }
-};
+import 'babel-polyfill';
+import axios from "axios";
 
-export default loggedIn;
+export default async function checkLoginStatus() {
+  return await axios
+    .get(`https://api.devcamp.space/logged_in`, { withCredentials: true })
+    .then(response => {
+      return response.data.logged_in;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
