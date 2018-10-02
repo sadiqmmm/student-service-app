@@ -1,3 +1,6 @@
+.project-cards-wrapper {
+  display: flex;
+}
 .project-card {
   background-color: white;
   color: #2a2828;
@@ -6,6 +9,7 @@
   padding: 20px;
   margin: 20px 20px 20px 0px;
   border-radius: 8px;
+  text-align: center;
 
   .metadata {
     color: white;

@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Logo from "../svgs/bottega-white-logo";
+
+import "../../style/project-dashboard.scss";
+import "../../style/project-card.scss";
+import "../../style/helpers.scss";
 
 export default class Dashboard extends Component {
   constructor() {
@@ -34,20 +39,23 @@ export default class Dashboard extends Component {
   render() {
     const projects = this.state.projects.map(project => {
       return (
-        <div key={project.id}>
-          <h2>{project.title}</h2>
-          <img src={project.logo} alt={project.language} />
+        <div key={project.id} className="project-card flex-center">
+          <div>
+            <h2>{project.title}</h2>
+            <img src={project.logo} alt={project.language} />
+          </div>
         </div>
       );
     });
 
     return (
       <div>
-        <h1>Dashboard</h1>
+        <Logo />
+        <h1>Project Dashboard</h1>
 
-        <p>And a bunch of data goes here</p>
+        <p>Select a project to view its data and API endpoints</p>
 
-        {projects}
+        <div className="project-cards-wrapper">{projects}</div>
       </div>
     );
   }
