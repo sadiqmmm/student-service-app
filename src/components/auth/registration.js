@@ -56,14 +56,14 @@ export default class Registration extends Component {
           <div className="metadata">
             <div className="title">Sign up for a new account</div>
 
-            <div class="small-green-line" />
+            <div className="small-green-line" />
           </div>
 
           <div className="auth-form">
             <form onSubmit={this.handleSubmit} className="form-wrapper">
               <div className="input-elements">
                 <div className="form-element-group">
-                  <label for="register-email">Email</label>
+                  <label htmlFor="register-email">Email</label>
                   <input
                     type="email"
                     name="email"
@@ -76,7 +76,7 @@ export default class Registration extends Component {
                 </div>
 
                 <div className="form-element-group">
-                  <label for="register-subdomain">Subdomain</label>
+                  <label htmlFor="register-subdomain">Subdomain</label>
                   <input
                     type="text"
                     name="subdomain"
@@ -89,7 +89,7 @@ export default class Registration extends Component {
                 </div>
 
                 <div className="form-element-group">
-                  <label for="register-password">Password</label>
+                  <label htmlFor="register-password">Password</label>
                   <input
                     type="password"
                     name="password"
@@ -102,7 +102,7 @@ export default class Registration extends Component {
                 </div>
 
                 <div className="form-element-group">
-                  <label for="register-password-confirmation">
+                  <label htmlFor="register-password-confirmation">
                     Password Confirmation
                   </label>
                   <input

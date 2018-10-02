@@ -51,14 +51,14 @@ export default class Login extends Component {
           <div className="metadata">
             <div className="title">Login</div>
 
-            <div class="small-green-line" />
+            <div className="small-green-line" />
           </div>
 
           <div className="auth-form">
             <form onSubmit={this.handleSubmit} className="form-wrapper">
               <div className="input-elements">
                 <div className="form-element-group">
-                  <label for="login-email">Email</label>
+                  <label htmlFor="login-email">Email</label>
                   <input
                     type="email"
                     name="email"
@@ -71,7 +71,7 @@ export default class Login extends Component {
                 </div>
 
                 <div className="form-element-group">
-                  <label for="login-password">Email</label>
+                  <label htmlFor="login-password">Email</label>
                   <input
                     type="password"
                     name="password"
