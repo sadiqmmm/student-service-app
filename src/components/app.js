@@ -10,6 +10,7 @@ import {
 
 import Home from "./views/homepage";
 import Dashboard from "./views/dashboard";
+import ProjectDetail from "./views/project-detail";
 import NoMatch from "./views/no-match";
 import NavLinks from "./partials/navigation";
 
@@ -23,6 +24,7 @@ export default class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/dashboard" component={Dashboard} />
+              <Route path="/project/:slug" component={ProjectDetail} />
               <Route component={NoMatch} />
             </Switch>
           </div>

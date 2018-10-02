@@ -14,7 +14,7 @@ export default function(props) {
 
         <div className="spacer40" />
 
-        <Link exact to="/" className="link-btn btn-primary">
+        <Link exact to="/project/heyy" className="link-btn btn-primary">
           <button>View Data</button>
         </Link>
       </div>
