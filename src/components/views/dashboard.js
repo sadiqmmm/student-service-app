@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+
 import Logo from "../svgs/bottega-white-logo";
 import ProjectCard from "../partials/project-card";
+import DashboardNavigation from "../partials/navigation";
 
 import "../../style/project-dashboard.scss";
 import "../../style/project-card.scss";
@@ -44,7 +46,7 @@ export default class Dashboard extends Component {
 
     return (
       <div>
-        <Logo />
+        <DashboardNavigation />
         <h1>Project Dashboard</h1>
 
         <p>Select a project to view its data and API endpoints</p>

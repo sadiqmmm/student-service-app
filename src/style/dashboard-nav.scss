@@ -1,0 +1,27 @@
+@import "./variables";
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  .nav-icon a {
+    color: white;
+    font-size: 1.8em;
+    transition: all 0.5s ease-in-out;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 3px;
+
+    &:hover {
+      color: $teal;
+      background-color: $offwhite;
+      border-radius: 10px;
+    }
+  }
+
+  .right-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 21px;
+  }
+}

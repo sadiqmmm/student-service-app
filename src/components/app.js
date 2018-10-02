@@ -12,7 +12,6 @@ import Home from "./views/homepage";
 import Dashboard from "./views/dashboard";
 import ProjectDetail from "./views/project-detail";
 import NoMatch from "./views/no-match";
-import NavLinks from "./partials/navigation";
 
 export default class App extends Component {
   render() {
@@ -20,7 +19,6 @@ export default class App extends Component {
       <div className="container">
         <Router>
           <div>
-            <NavLinks />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/dashboard" component={Dashboard} />
