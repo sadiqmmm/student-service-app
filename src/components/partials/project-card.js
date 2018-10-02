@@ -5,7 +5,7 @@ import "../../style/buttons.scss";
 import "../../style/helpers.scss";
 
 export default function(props) {
-  const { id, title, logo, language } = props.project;
+  const { id, title, logo, language, slug } = props.project;
   return (
     <div className="project-card flex-center">
       <div>
@@ -14,7 +14,7 @@ export default function(props) {
 
         <div className="spacer40" />
 
-        <Link exact to="/project/heyy" className="link-btn btn-primary">
+        <Link exact to={`/project/${slug}`} className="link-btn btn-primary">
           <button>View Data</button>
         </Link>
       </div>
