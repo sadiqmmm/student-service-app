@@ -11,8 +11,6 @@ class NavLinks extends Component {
   constructor(props) {
     super(props);
 
-    console.log("propsssss", this.props);
-
     this.signOut = this.signOut.bind(this);
   }
 
