@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Registration from "../auth/registration";
 import Login from "../auth/login";
+import Logo from "../svgs/bottega-white-logo";
 
+import "../../style/main.scss";
 import "../../style/home.scss";
 
 export default class Homepage extends Component {
@@ -32,7 +34,8 @@ export default class Homepage extends Component {
     return (
       <div className="home">
         <div className="left-column">
-          <h1>Homepage</h1>
+          <Logo />
+          <div className="headline">Application Data Manager</div>
         </div>
 
         <div className="right-column">

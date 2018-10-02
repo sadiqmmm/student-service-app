@@ -3,6 +3,14 @@
   justify-content: space-between;
   padding-right: 60px;
 
+  .left-column {
+    .headline {
+      font-size: 1.5em;
+      font-weight: 900;
+      font-family: "Ubuntu", sans-serif;
+    }
+  }
+
   .right-column {
     display: grid;
     grid-template-columns: 1fr 1fr;

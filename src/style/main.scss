@@ -37,3 +37,11 @@ h4,
 h5 {
   font-family: "Ubuntu", sans-serif;
 }
+
+.app-wrapper {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  padding-top: 100px;
+  padding-left: 100px;
+}
