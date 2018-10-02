@@ -1,31 +1,60 @@
-import React from "react";
+import React, { Component } from "react";
+import axios from "axios";
+import { withRouter } from "react-router";
+
 import { NavLink } from "react-router-dom";
 import Logo from "../svgs/bottega-white-logo";
 
 import "../../style/dashboard-nav.scss";
 
-const NavLinks = () => {
-  return (
-    <div className="nav-wrapper">
-      <div className="left-side">
-        <Logo />
-      </div>
+class NavLinks extends Component {
+  constructor(props) {
+    super(props);
 
-      <div className="right-side">
-        <div className="nav-icon">
-          <NavLink exact to="/" activeClassName="active-nav-link">
-            <i class="fas fa-sliders-h" />
-          </NavLink>
+    console.log("propsssss", this.props);
+
+    this.signOut = this.signOut.bind(this);
+  }
+
+  signOut(event) {
+    axios
+      .delete(`https://api.devcamp.space/logout`, {
+        withCredentials: true
+      })
+      .then(response => {
+        this.props.history.push("/");
+        return response;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <div className="nav-wrapper">
+        <div className="left-side">
+          <Logo />
         </div>
 
-        <div className="nav-icon">
-          <NavLink exact to="/" activeClassName="active-nav-link">
-            <i class="fas fa-sign-in-alt" />
-          </NavLink>
+        <div className="right-side">
+          <div className="nav-icon">
+            <NavLink exact to="/" activeClassName="active-nav-link">
+              <i className="fas fa-sliders-h" />
+            </NavLink>
+          </div>
+
+          <div className="nav-icon">
+            <a href="#" onClick={this.signOut}>
+              <i className="fas fa-sign-in-alt" />
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default NavLinks;
+export default withRouter(NavLinks);

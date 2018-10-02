@@ -8,7 +8,7 @@ export default function(props) {
   const { id, title, logo, language, slug } = props.project;
   return (
     <div className="project-card flex-center">
-      <div>
+      <div className="center-text">
         <h2>{title}</h2>
         <img src={logo} alt={language} />
 
