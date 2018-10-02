@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Registration from "../auth/registration";
 import Login from "../auth/login";
 import Logo from "../svgs/bottega-white-logo";
+import loggedIn from "../helpers/logged-in";
 
 import "../../style/main.scss";
 import "../../style/home.scss";
@@ -11,7 +12,9 @@ export default class Homepage extends Component {
     super(props);
 
     this.state = {
-      errorMessage: null
+      errorMessage: null,
+      isLoading: true,
+      loggedInStatus: false
     };
 
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
@@ -30,7 +33,26 @@ export default class Homepage extends Component {
     });
   }
 
+  componentDidMount() {
+    loggedIn()
+      .then(res => {
+        if (res) {
+          this.setState({ loggedInStatus: true });
+        } else {
+          this.setState({ loggedInStatus: false });
+        }
+        this.setState({ isLoading: false });
+      })
+      .catch(error => {
+        console.log("nope", error);
+      });
+  }
+
   render() {
+    if (this.state.isLoading) {
+      return "Loading...";
+    }
+
     return (
       <div className="home">
         <div className="left-column">
