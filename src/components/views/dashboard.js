@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Logo from "../svgs/bottega-white-logo";
+import ProjectCard from "../partials/project-card";
 
 import "../../style/project-dashboard.scss";
 import "../../style/project-card.scss";
@@ -37,15 +38,8 @@ export default class Dashboard extends Component {
   }
 
   render() {
-    const projects = this.state.projects.map(project => {
-      return (
-        <div key={project.id} className="project-card flex-center">
-          <div>
-            <h2>{project.title}</h2>
-            <img src={project.logo} alt={project.language} />
-          </div>
-        </div>
-      );
+    const projectList = this.state.projects.map(project => {
+      return <ProjectCard key={project.id} project={project} />;
     });
 
     return (
@@ -55,7 +49,7 @@ export default class Dashboard extends Component {
 
         <p>Select a project to view its data and API endpoints</p>
 
-        <div className="project-cards-wrapper">{projects}</div>
+        <div className="project-cards-wrapper">{projectList}</div>
       </div>
     );
   }
