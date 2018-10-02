@@ -2,6 +2,7 @@
 @import url("https://use.fontawesome.com/releases/v5.0.13/css/all.css");
 
 body {
+  font-family: "Raleway", sans-serif;
   margin: 0;
   width: 100vw;
   height: 100vh;
@@ -29,26 +30,10 @@ body {
     ); /* IE6-9 fallback on horizontal gradient */
 }
 
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: white;
-  padding-top: 100px;
-  padding-left: 100px;
-}
-
-#nav {
-  .nav-link {
-    margin-right: 20px;
-  }
-  a {
-    font-weight: bold;
-    color: white;
-    font-weight: 200;
-    text-decoration: none;
-    &.router-link-exact-active {
-      font-weight: 900;
-    }
-  }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Ubuntu", sans-serif;
 }
