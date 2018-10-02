@@ -36,14 +36,12 @@ export default class Homepage extends Component {
         </div>
 
         <div className="right-column">
-          <div>{this.state.errorMessage}</div>
-
-          <Login
+          <Registration
             handleSuccessfulAuth={this.handleSuccessfulAuth}
             handleUnSuccessfulAuth={this.handleUnSuccessfulAuth}
           />
 
-          <Registration
+          <Login
             handleSuccessfulAuth={this.handleSuccessfulAuth}
             handleUnSuccessfulAuth={this.handleUnSuccessfulAuth}
           />

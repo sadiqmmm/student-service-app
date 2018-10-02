@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import "../../style/auth.scss";
+import "../../style/project-card.scss";
+import "../../style/buttons.scss";
+import "../../style/forms.scss";
+import "../../style/helpers.scss";
+
 export default class Registration extends Component {
   constructor(props) {
     super(props);
@@ -45,39 +51,77 @@ export default class Registration extends Component {
 
   render() {
     return (
-      <div className="registrationFormWrapper">
-        <div className="card">
-          <div className="homepageQuote">
-            <form onSubmit={this.handleSubmit} className="formWrapper">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-              <input
-                type="text"
-                name="subdomain"
-                placeholder="Subdomain"
-                value={this.state.subdomain}
-                onChange={this.handleChange}
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-              <input
-                type="password"
-                name="password_confirmation"
-                placeholder="Confirm password"
-                value={this.state.password_confirmation}
-                onChange={this.handleChange}
-              />
-              <button type="submit">Register</button>
+      <div className="project-cards-wrapper">
+        <div className="project-card auth-card">
+          <div className="metadata">
+            <div className="title">Sign up for a new account</div>
+
+            <div class="small-green-line" />
+          </div>
+
+          <div className="auth-form">
+            <form onSubmit={this.handleSubmit} className="form-wrapper">
+              <div className="input-elements">
+                <div className="form-element-group">
+                  <label for="register-email">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="register-email"
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    className="full-width-element"
+                  />
+                </div>
+
+                <div className="form-element-group">
+                  <label for="register-subdomain">Subdomain</label>
+                  <input
+                    type="text"
+                    name="subdomain"
+                    id="register-subdomain"
+                    placeholder="Subdomain"
+                    value={this.state.subdomain}
+                    onChange={this.handleChange}
+                    className="full-width-element"
+                  />
+                </div>
+
+                <div className="form-element-group">
+                  <label for="register-password">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="register-password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    className="full-width-element"
+                  />
+                </div>
+
+                <div className="form-element-group">
+                  <label for="register-password-confirmation">
+                    Password Confirmation
+                  </label>
+                  <input
+                    type="password"
+                    name="password_confirmation"
+                    id="register-password-confirmation"
+                    placeholder="Confirm password"
+                    value={this.state.password_confirmation}
+                    onChange={this.handleChange}
+                    className="full-width-element"
+                  />
+                </div>
+              </div>
+
+              <div className="form-buttons-wrapper">
+                <div className="link-btn btn-primary">
+                  <button type="submit">Register</button>
+                </div>
+              </div>
             </form>
           </div>
         </div>
