@@ -1,0 +1,38 @@
+.project-cards-wrapper {
+  display: flex;
+
+  .new-project {
+    height: 705px;
+    width: 300px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: background-color 0.5s;
+    transition: font-size 0.5s;
+
+    .icon {
+      margin-top: 20px;
+      font-size: 2em;
+    }
+  }
+
+  .new-project:hover {
+    font-size: 1.2em;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  .line-items {
+    padding-top: 170px;
+
+    .line-item {
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+  }
+}

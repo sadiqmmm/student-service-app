@@ -1,0 +1,29 @@
+@import "./variables.scss";
+
+.form-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+
+  .full-width-element {
+    width: calc(100% - 24px);
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid $lightgrey;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .form-buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    button {
+      width: 70px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+}

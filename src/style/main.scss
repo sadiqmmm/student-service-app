@@ -1,24 +1,54 @@
-html {
-}
-
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-  font-family: "montserrat";
-}
+@import "./variables.scss";
+@import url("https://use.fontawesome.com/releases/v5.0.13/css/all.css");
 
 body {
-  overflow-x: hidden;
-  font-weight: normal;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0b0a26+0,2989d8+50,207cca+51,110d40+100 */
+  background: #0b0a26; /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    #0b0a26 0%,
+    #5a4cd8 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    -45deg,
+    #0b0a26 0%,
+    #5a4cd8 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    135deg,
+    #0b0a26 0%,
+    #5a4cd8 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr="#0b0a26",
+      endColorstr="#110d40",
+      GradientType=1
+    ); /* IE6-9 fallback on horizontal gradient */
 }
 
-.app {
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  padding-top: 100px;
+  padding-left: 100px;
+}
+
+#nav {
+  .nav-link {
+    margin-right: 20px;
+  }
+  a {
+    font-weight: bold;
+    color: white;
+    font-weight: 200;
+    text-decoration: none;
+    &.router-link-exact-active {
+      font-weight: 900;
+    }
+  }
 }

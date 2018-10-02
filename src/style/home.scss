@@ -1,0 +1,11 @@
+.home {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 60px;
+
+  .right-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+}

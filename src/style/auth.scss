@@ -1,0 +1,43 @@
+@import "./variables.scss";
+
+.auth-card {
+  width: 362px !important;
+  height: 475px !important;
+
+  .metadata {
+    height: 100px !important;
+
+    .small-green-line {
+      margin-left: 20px !important;
+    }
+  }
+
+  .auth-form {
+    margin-top: 110px;
+
+    .form-wrapper {
+      height: 365px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .input-elements {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 35px;
+
+        .form-element-group {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: 5px;
+
+          label {
+            font-size: 0.8em;
+            font-weight: 700;
+            color: $charcoal;
+          }
+        }
+      }
+    }
+  }
+}
