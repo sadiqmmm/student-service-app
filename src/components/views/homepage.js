@@ -37,7 +37,7 @@ export default class Homepage extends Component {
     loggedIn()
       .then(res => {
         if (res) {
-          this.setState({ loggedInStatus: true });
+          this.props.history.push("/dashboard");
         } else {
           this.setState({ loggedInStatus: false });
         }

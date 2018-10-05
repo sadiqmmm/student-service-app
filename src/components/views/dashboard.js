@@ -24,11 +24,10 @@ export default class Dashboard extends Component {
   componentDidMount() {
     loggedIn()
       .then(res => {
-        console.log("logggedin asdfasd -------------", res);
         if (res) {
           this.setState({ loggedInStatus: true });
         } else {
-          this.setState({ loggedInStatus: false });
+          this.props.history.push("/");
         }
         this.setState({ isLoading: false });
       })
@@ -59,6 +58,10 @@ export default class Dashboard extends Component {
     const projectList = this.state.projects.map(project => {
       return <ProjectCard key={project.id} project={project} />;
     });
+
+    if (this.state.isLoading) {
+      return <div>Loading...</div>;
+    }
 
     return (
       <div>
