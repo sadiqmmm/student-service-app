@@ -34,7 +34,9 @@ class NavLinks extends Component {
     return (
       <div className="nav-wrapper">
         <div className="left-side">
-          <Logo />
+          <NavLink exact to="/">
+            <Logo />
+          </NavLink>
         </div>
 
         <div className="right-side">

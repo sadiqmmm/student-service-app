@@ -24,7 +24,7 @@ export default class Dashboard extends Component {
   componentDidMount() {
     loggedIn()
       .then(res => {
-        if (res) {
+        if (res.logged_in) {
           this.setState({ loggedInStatus: true });
         } else {
           this.props.history.push("/");
