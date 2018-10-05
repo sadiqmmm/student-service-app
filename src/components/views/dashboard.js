@@ -4,6 +4,7 @@ import axios from "axios";
 import Logo from "../svgs/bottega-white-logo";
 import ProjectCard from "../partials/project-card";
 import DashboardNavigation from "../partials/navigation";
+import loggedIn from "../helpers/logged-in";
 
 import "../../style/project-dashboard.scss";
 import "../../style/project-card.scss";
@@ -14,8 +15,27 @@ export default class Dashboard extends Component {
     super();
 
     this.state = {
-      projects: []
+      projects: [],
+      isLoading: true,
+      loggedInStatus: false
     };
+  }
+
+  componentDidMount() {
+    loggedIn()
+      .then(res => {
+        console.log("logggedin asdfasd -------------", res);
+        if (res) {
+          this.setState({ loggedInStatus: true });
+        } else {
+          this.setState({ loggedInStatus: false });
+        }
+        this.setState({ isLoading: false });
+      })
+      .catch(error => {
+        console.log("nope", error);
+      });
+    this.getProjectList();
   }
 
   getProjectList() {
@@ -33,10 +53,6 @@ export default class Dashboard extends Component {
       .catch(error => {
         console.log("Errors");
       });
-  }
-
-  componentDidMount() {
-    this.getProjectList();
   }
 
   render() {
