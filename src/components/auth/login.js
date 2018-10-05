@@ -35,7 +35,11 @@ export default class Login extends Component {
         { withCredentials: true }
       )
       .then(response => {
-        this.props.handleSuccessfulAuth(response.data);
+        if (response.data.status === "created") {
+          this.props.handleSuccessfulAuth(response.data);
+        } else {
+          this.props.handleUnSuccessfulAuth(error);
+        }
       })
       .catch(error => {
         this.props.handleUnSuccessfulAuth(error);
