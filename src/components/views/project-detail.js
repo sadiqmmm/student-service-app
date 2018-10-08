@@ -5,6 +5,7 @@ import loggedIn from "../helpers/logged-in";
 import DashboardNavigation from "../partials/navigation";
 
 import "../../style/lists.scss";
+import "../../style/project-detail.scss";
 
 export default class ProjectDetail extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ export default class ProjectDetail extends Component {
         }
       )
       .then(response => {
+        console.log(response.data);
         this.setState({
           project: response.data.project
         });
@@ -61,27 +63,34 @@ export default class ProjectDetail extends Component {
       return <div>Loading...</div>;
     }
 
-    const { title, language, logo, slug } = this.state.project;
+    const { title, language, white_logo, slug } = this.state.project;
     const { subdomain } = this.state.currentClient;
+
+    const endpointList = this.state.project.endpoints.map(endpoint => {
+      return (
+        <div>
+          <div className="list-item title">All portfolio items</div>
+          <div className="list-item">
+            <a href="https://google.com">google.com</a>
+          </div>
+        </div>
+      );
+    });
 
     return (
       <div>
         <DashboardNavigation />
-        <h1>{title}</h1>
-        <h2>{subdomain}</h2>
+
+        <div className="project-detail-header">
+          <img src={white_logo} alt={slug} />
+          <h1>{title}</h1>
+        </div>
 
         <div className="card">
           <h2>API Endpoints</h2>
 
-          <div className="list-container">
-            <div className="list-item title">All portfolio items</div>
-            <div className="list-item">
-              <a href="https://google.com">google.com</a>
-            </div>
-          </div>
+          <div className="list-container">{endpointList}</div>
         </div>
-
-        <img src={logo} alt={slug} />
       </div>
     );
   }
