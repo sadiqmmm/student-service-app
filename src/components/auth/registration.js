@@ -52,7 +52,7 @@ export default class Registration extends Component {
   render() {
     return (
       <div className="project-cards-wrapper">
-        <div className="project-card auth-card">
+        <div className="card auth-card">
           <div className="metadata">
             <div className="title">Sign up for a new account</div>
 
