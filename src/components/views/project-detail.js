@@ -3,6 +3,7 @@ import axios from "axios";
 
 import loggedIn from "../helpers/logged-in";
 import DashboardNavigation from "../partials/navigation";
+import ListItem from "../partials/list-item";
 
 import "../../style/lists.scss";
 import "../../style/project-detail.scss";
@@ -67,14 +68,7 @@ export default class ProjectDetail extends Component {
     const { subdomain } = this.state.currentClient;
 
     const endpointList = this.state.project.endpoints.map(endpoint => {
-      return (
-        <div>
-          <div className="list-item title">All portfolio items</div>
-          <div className="list-item">
-            <a href="https://google.com">google.com</a>
-          </div>
-        </div>
-      );
+      return <ListItem key={endpoint.id} {...endpoint} />;
     });
 
     return (

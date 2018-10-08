@@ -3,10 +3,8 @@
 .list-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 21px;
-  transition: all 0.5s ease-in-out;
-  border-bottom: 2px solid transparent;
+  grid-template-columns: 1fr;
+  grid-gap: 5px;
 
   a {
     color: $teal;
@@ -14,12 +12,17 @@
     font-weight: 900;
   }
 
-  &:hover {
-    border-bottom: 2px solid $teal;
-  }
-
   .list-item {
+    display: grid;
+    grid-template-columns: 42px 1fr 2fr;
+    grid-gap: 21px;
+    transition: all 0.5s ease-in-out;
+    border-bottom: 2px solid transparent;
     padding: 15px 0px;
+
+    &:hover {
+      border-bottom: 2px solid $teal;
+    }
   }
 
   .title {
