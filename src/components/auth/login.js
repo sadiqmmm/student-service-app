@@ -75,7 +75,7 @@ export default class Login extends Component {
                 </div>
 
                 <div className="form-element-group">
-                  <label htmlFor="login-password">Email</label>
+                  <label htmlFor="login-password">Password</label>
                   <input
                     type="password"
                     name="password"
