@@ -16,7 +16,8 @@ export default class ProjectDetail extends Component {
       isLoading: true,
       title: "",
       currentClient: {},
-      project: {}
+      project: {},
+      endpointList: []
     };
 
     this.getProjectDetails = this.getProjectDetails.bind(this);
@@ -27,6 +28,7 @@ export default class ProjectDetail extends Component {
       .then(res => {
         if (res.logged_in) {
           this.setState({ currentClient: res.current_client });
+          this.getProjectDetails();
         } else {
           this.props.history.push("/");
         }
@@ -35,7 +37,6 @@ export default class ProjectDetail extends Component {
       .catch(error => {
         console.log("nope", error);
       });
-    this.getProjectDetails();
   }
 
   getProjectDetails() {
@@ -49,7 +50,8 @@ export default class ProjectDetail extends Component {
       .then(response => {
         console.log(response.data);
         this.setState({
-          project: response.data.project
+          project: response.data.project,
+          endpointList: response.data.project.endpoints
         });
 
         console.log("client project", response);
@@ -67,7 +69,7 @@ export default class ProjectDetail extends Component {
     const { title, language, white_logo, slug } = this.state.project;
     const { subdomain } = this.state.currentClient;
 
-    const endpointList = this.state.project.endpoints.map(endpoint => {
+    const endpointList = this.state.endpointList.map(endpoint => {
       return <ListItem key={endpoint.id} {...endpoint} />;
     });
 
