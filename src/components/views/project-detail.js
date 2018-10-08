@@ -4,6 +4,8 @@ import axios from "axios";
 import loggedIn from "../helpers/logged-in";
 import DashboardNavigation from "../partials/navigation";
 
+import "../../style/lists.scss";
+
 export default class ProjectDetail extends Component {
   constructor(props) {
     super(props);
@@ -60,11 +62,24 @@ export default class ProjectDetail extends Component {
     }
 
     const { title, language, logo, slug } = this.state.project;
+    const { subdomain } = this.state.currentClient;
 
     return (
       <div>
         <DashboardNavigation />
         <h1>{title}</h1>
+        <h2>{subdomain}</h2>
+
+        <div className="card">
+          <h2>API Endpoints</h2>
+
+          <div className="list-container">
+            <div className="list-item-sm title">All portfolio items</div>
+            <div className="list-item-lg">
+              <a href="https://google.com">google.com</a>
+            </div>
+          </div>
+        </div>
 
         <img src={logo} alt={slug} />
       </div>

@@ -7,7 +7,7 @@ import "../../style/helpers.scss";
 export default function(props) {
   const { id, title, logo, language, slug } = props.project;
   return (
-    <div className="project-card flex-center">
+    <div className="card project-card flex-center">
       <div className="center-text">
         <h2>{title}</h2>
         <img src={logo} alt={language} />
