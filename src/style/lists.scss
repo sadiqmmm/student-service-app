@@ -1,4 +1,28 @@
+@import "./variables.scss";
+
 .list-container {
   width: 100%;
-  background-color: red;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 21px;
+  transition: all 0.5s ease-in-out;
+  border-bottom: 2px solid transparent;
+
+  a {
+    color: $teal;
+    text-decoration: none;
+    font-weight: 900;
+  }
+
+  &:hover {
+    border-bottom: 2px solid $teal;
+  }
+
+  .list-item {
+    padding: 15px 0px;
+  }
+
+  .title {
+    font-weight: 900;
+  }
 }

@@ -74,8 +74,8 @@ export default class ProjectDetail extends Component {
           <h2>API Endpoints</h2>
 
           <div className="list-container">
-            <div className="list-item-sm title">All portfolio items</div>
-            <div className="list-item-lg">
+            <div className="list-item title">All portfolio items</div>
+            <div className="list-item">
               <a href="https://google.com">google.com</a>
             </div>
           </div>
