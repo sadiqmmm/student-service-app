@@ -17,10 +17,13 @@ export default class ProjectDetail extends Component {
       title: "",
       currentClient: {},
       project: {},
-      endpointList: []
+      endpointList: [],
+      projectDataEndpoint: ""
     };
 
     this.getProjectDetails = this.getProjectDetails.bind(this);
+    this.selectProject = this.selectProject.bind(this);
+    this.getData = this.getData.bind(this);
   }
 
   componentDidMount() {
@@ -29,13 +32,14 @@ export default class ProjectDetail extends Component {
         if (res.logged_in) {
           this.setState({ currentClient: res.current_client });
           this.getProjectDetails();
+          this.getData();
         } else {
           this.props.history.push("/");
         }
         this.setState({ isLoading: false });
       })
       .catch(error => {
-        console.log("nope", error);
+        console.log("not signed in", error);
       });
   }
 
@@ -55,6 +59,42 @@ export default class ProjectDetail extends Component {
         });
 
         console.log("client project", response);
+      })
+      .catch(error => {
+        console.log("Errors");
+      });
+  }
+
+  selectProject() {
+    switch (this.props.match.params.slug) {
+      case "portfolio":
+        this.setState({ projectDataEndpoint: "portfolio_items" });
+    }
+    console.log("project slug state", this.state.projectDataEndpoint);
+  }
+
+  getSubdomain() {
+    return this.state.currentClient.subdomain;
+  }
+
+  getData() {
+    this.selectProject();
+
+    axios
+      .get(
+        `https://${this.getSubdomain()}.devcamp.space/${this.state
+          .projectDataEndpoint}`,
+        {
+          withCredentials: true
+        }
+      )
+      .then(response => {
+        // this.setState({
+        //   project: response.data.project,
+        //   endpointList: response.data.project.endpoints
+        // });
+
+        console.log("returned data", response);
       })
       .catch(error => {
         console.log("Errors");
