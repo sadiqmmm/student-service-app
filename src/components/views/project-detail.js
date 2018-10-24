@@ -18,7 +18,8 @@ export default class ProjectDetail extends Component {
       currentClient: {},
       project: {},
       endpointList: [],
-      projectDataEndpoint: ""
+      projectDataEndpoint: "",
+      projectData: {}
     };
 
     this.getProjectDetails = this.getProjectDetails.bind(this);
@@ -89,12 +90,13 @@ export default class ProjectDetail extends Component {
         }
       )
       .then(response => {
-        // this.setState({
-        //   project: response.data.project,
-        //   endpointList: response.data.project.endpoints
-        // });
+        this.setState({
+          projectData: {
+            items: [...response.data[this.state.projectDataEndpoint]]
+          }
+        });
 
-        console.log("returned data", response);
+        console.log("updated projectData", this.state.projectData);
       })
       .catch(error => {
         console.log("Errors");
