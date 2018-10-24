@@ -4,6 +4,7 @@ import axios from "axios";
 import loggedIn from "../helpers/logged-in";
 import DashboardNavigation from "../partials/navigation";
 import ListItem from "../partials/list-item";
+import PortfolioItem from "../partials/portfolio-item";
 
 import "../../style/lists.scss";
 import "../../style/project-detail.scss";
@@ -19,7 +20,9 @@ export default class ProjectDetail extends Component {
       project: {},
       endpointList: [],
       projectDataEndpoint: "",
-      projectData: {}
+      projectData: {
+        items: []
+      }
     };
 
     this.getProjectDetails = this.getProjectDetails.bind(this);
@@ -95,8 +98,6 @@ export default class ProjectDetail extends Component {
             items: [...response.data[this.state.projectDataEndpoint]]
           }
         });
-
-        console.log("updated projectData", this.state.projectData);
       })
       .catch(error => {
         console.log("Errors");
@@ -115,6 +116,14 @@ export default class ProjectDetail extends Component {
       return <ListItem key={endpoint.id} {...endpoint} subdomain={subdomain} />;
     });
 
+    const dataList = this.state.projectData.items.map(item => {
+      return <PortfolioItem key={item.id} {...item} />;
+    });
+
+    // TODO
+    // conditional for other projects
+    // Conditional for if no data is provided
+
     return (
       <div>
         <DashboardNavigation />
@@ -128,6 +137,12 @@ export default class ProjectDetail extends Component {
           <h2>API Endpoints</h2>
 
           <div className="list-container">{endpointList}</div>
+        </div>
+
+        <div className="card">
+          <h2>{title} Data</h2>
+
+          <div className="list-container">{dataList}</div>
         </div>
       </div>
     );
