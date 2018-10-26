@@ -10,7 +10,7 @@ const ListItem = props => {
   const fullLink = linkBuilder(subdomain, link);
 
   return (
-    <div className="list-item">
+    <div className="endpoint-list-item">
       <div className="sm-column">{http_verb}</div>
       <div className="title">{title}</div>
       <div className="details">

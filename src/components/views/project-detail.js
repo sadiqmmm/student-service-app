@@ -6,9 +6,6 @@ import DashboardNavigation from "../partials/navigation";
 import ListItem from "../partials/list-item";
 import PortfolioItem from "../partials/portfolio-item";
 
-import "../../style/lists.scss";
-import "../../style/project-detail.scss";
-
 export default class ProjectDetail extends Component {
   constructor(props) {
     super(props);

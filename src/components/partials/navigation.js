@@ -5,8 +5,6 @@ import { withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
 import Logo from "../svgs/bottega-white-logo";
 
-import "../../style/dashboard-nav.scss";
-
 class NavLinks extends Component {
   constructor(props) {
     super(props);

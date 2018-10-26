@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "../../style/auth.scss";
-import "../../style/project-card.scss";
-import "../../style/buttons.scss";
-import "../../style/forms.scss";
-import "../../style/helpers.scss";
 
 export default class Login extends Component {
   constructor(props) {

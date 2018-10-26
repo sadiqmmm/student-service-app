@@ -12,17 +12,14 @@
     font-weight: 900;
   }
 
-  .list-item {
-    display: grid;
+  .endpoint-list-item {
+    @include list-item();
     grid-template-columns: 42px 1fr 2fr;
-    grid-gap: 21px;
-    transition: all 0.5s ease-in-out;
-    border-bottom: 2px solid transparent;
-    padding: 15px 0px;
+  }
 
-    &:hover {
-      border-bottom: 2px solid $teal;
-    }
+  .data-list-item {
+    @include list-item();
+    grid-template-columns: 1fr 2fr 1fr;
   }
 
   .title {

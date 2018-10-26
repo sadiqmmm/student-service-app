@@ -1,46 +1,16 @@
 @import "./variables.scss";
+@import "./mixins.scss";
 @import url("https://use.fontawesome.com/releases/v5.0.13/css/all.css");
 
-body {
-  font-family: "Raleway", sans-serif;
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0b0a26+0,2989d8+50,207cca+51,110d40+100 */
-  background: #0b0a26; /* Old browsers */
-  background: -moz-linear-gradient(
-    -45deg,
-    #0b0a26 0%,
-    #5a4cd8 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    -45deg,
-    #0b0a26 0%,
-    #5a4cd8 100%
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    135deg,
-    #0b0a26 0%,
-    #5a4cd8 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(
-      startColorstr="#0b0a26",
-      endColorstr="#110d40",
-      GradientType=1
-    ); /* IE6-9 fallback on horizontal gradient */
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Ubuntu", sans-serif;
-}
-
-.app-wrapper {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: white;
-  padding: 100px;
-}
+@import "./auth.scss";
+@import "./base.scss";
+@import "./buttons.scss";
+@import "./cards.scss";
+@import "./dashboard-nav.scss";
+@import "./forms.scss";
+@import "./helpers.scss";
+@import "./home.scss";
+@import "./lists.scss";
+@import "./project-card.scss";
+@import "./project-dashboard.scss";
+@import "./project-detail.scss";

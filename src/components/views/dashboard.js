@@ -6,11 +6,6 @@ import ProjectCard from "../partials/project-card";
 import DashboardNavigation from "../partials/navigation";
 import loggedIn from "../helpers/logged-in";
 
-import "../../style/project-dashboard.scss";
-import "../../style/cards.scss";
-import "../../style/project-card.scss";
-import "../../style/helpers.scss";
-
 export default class Dashboard extends Component {
   constructor() {
     super();

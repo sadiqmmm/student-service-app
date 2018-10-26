@@ -1,0 +1,11 @@
+@mixin list-item {
+  display: grid;
+  grid-gap: 21px;
+  transition: all 0.5s ease-in-out;
+  border-bottom: 2px solid transparent;
+  padding: 15px 0px;
+
+  &:hover {
+    border-bottom: 2px solid $teal;
+  }
+}

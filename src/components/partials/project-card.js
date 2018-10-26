@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../../style/buttons.scss";
-import "../../style/helpers.scss";
-
 export default function(props) {
   const { id, title, logo, language, slug } = props.project;
   return (

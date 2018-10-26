@@ -4,9 +4,6 @@ import Login from "../auth/login";
 import Logo from "../svgs/bottega-white-logo";
 import loggedIn from "../helpers/logged-in";
 
-import "../../style/main.scss";
-import "../../style/home.scss";
-
 export default class Homepage extends Component {
   constructor(props) {
     super(props);
