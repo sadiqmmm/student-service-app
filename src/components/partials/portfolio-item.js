@@ -6,7 +6,7 @@ const PortfolioItem = props => {
   return (
     <div className="data-list-item">
       <div className="title">{name}</div>
-      <div className="title">{description}</div>
+      <div>{description}</div>
       <div className="details">
         <a href={url}>{url}</a>
       </div>
