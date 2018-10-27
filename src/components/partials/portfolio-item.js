@@ -1,10 +1,11 @@
 import React from "react";
 
 const PortfolioItem = props => {
-  const { name, description, url } = props;
+  const { id, name, description, url } = props;
 
   return (
     <div className="data-list-item">
+      <div className="sm-column">{id}</div>
       <div className="title">{name}</div>
       <div>{description}</div>
       <div className="details">
