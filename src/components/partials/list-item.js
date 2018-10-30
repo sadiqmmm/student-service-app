@@ -14,7 +14,9 @@ const ListItem = props => {
       <div className="sm-column">{http_verb}</div>
       <div className="title">{title}</div>
       <div className="details">
-        <a href={fullLink}>{fullLink}</a>
+        <a href={fullLink} target="_blank">
+          {fullLink}
+        </a>
       </div>
     </div>
   );

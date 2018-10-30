@@ -9,7 +9,9 @@ const PortfolioItem = props => {
       <div className="title">{name}</div>
       <div>{description}</div>
       <div className="details">
-        <a href={url}>{url}</a>
+        <a href={url} target="_blank">
+          {url}
+        </a>
       </div>
     </div>
   );
