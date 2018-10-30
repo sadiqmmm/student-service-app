@@ -3,6 +3,7 @@
 .nav-wrapper {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 42px;
 
   .nav-icon a {
     color: white;
@@ -21,7 +22,7 @@
 
   .right-side {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 21px;
   }
 }

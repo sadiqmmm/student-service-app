@@ -40,7 +40,13 @@ class NavLinks extends Component {
         <div className="right-side">
           <div className="nav-icon">
             <NavLink exact to="/" activeClassName="active-nav-link">
-              <i className="fas fa-sliders-h" />
+              <i className="fas fa-database" />
+            </NavLink>
+          </div>
+
+          <div className="nav-icon">
+            <NavLink exact to="/" activeClassName="active-nav-link">
+              <i class="fas fa-project-diagram" />
             </NavLink>
           </div>
 
