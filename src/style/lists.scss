@@ -19,7 +19,7 @@
 
   .data-list-item {
     @include list-item();
-    grid-template-columns: 15px 1fr 2fr 1fr;
+    grid-template-columns: 15px 1fr 2fr 1.5fr;
   }
 
   .title {
