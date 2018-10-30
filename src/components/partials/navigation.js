@@ -45,7 +45,11 @@ class NavLinks extends Component {
           </div>
 
           <div className="nav-icon">
-            <NavLink exact to="/" activeClassName="active-nav-link">
+            <NavLink
+              exact
+              to="/white-listed-links"
+              activeClassName="active-nav-link"
+            >
               <i class="fas fa-project-diagram" />
             </NavLink>
           </div>
