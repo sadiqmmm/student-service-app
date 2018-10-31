@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import DashboardNavigation from "../partials/navigation";
+import SingleRecordListItem from "../partials/single-record-list-item";
 
 export default class WhiteListedLinks extends Component {
   constructor() {
@@ -33,14 +34,20 @@ export default class WhiteListedLinks extends Component {
 
   render() {
     const clientDomainList = this.state.clientDomains.map(clientDomain => {
-      return clientDomain.url;
+      return (
+        <SingleRecordListItem key={clientDomain.id} item={clientDomain.url} />
+      );
     });
 
     return (
       <div>
         <DashboardNavigation />
-        <h1>White List Links</h1>
-        {clientDomainList}
+
+        <div className="card">
+          <h2>White List Links</h2>
+
+          <div className="list-container">{clientDomainList}</div>
+        </div>
       </div>
     );
   }
