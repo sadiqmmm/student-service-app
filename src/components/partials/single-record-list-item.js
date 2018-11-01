@@ -10,7 +10,9 @@ const SingleRecordListItem = props => {
       </div>
 
       <div className="actions">
-        <button onClick={props.handleWhiteListLinkDelete}>Delete</button>
+        <button onClick={props.handleWhiteListLinkDelete}>
+          <i class="fas fa-times-circle" />
+        </button>
       </div>
     </div>
   );
