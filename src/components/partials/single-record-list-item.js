@@ -8,6 +8,10 @@ const SingleRecordListItem = props => {
           {props.item}
         </a>
       </div>
+
+      <div className="actions">
+        <button onClick={props.handleWhiteListLinkDelete}>Delete</button>
+      </div>
     </div>
   );
 };

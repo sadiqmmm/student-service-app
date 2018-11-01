@@ -15,6 +15,7 @@ export default class WhiteListedLinks extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.createNewWhiteListLink = this.createNewWhiteListLink.bind(this);
+    this.handleWhiteListLinkDelete = this.handleWhiteListLinkDelete.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +39,25 @@ export default class WhiteListedLinks extends Component {
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
+  }
+
+  handleWhiteListLinkDelete(event, linkId) {
+    axios
+      .delete(`https://api.devcamp.space/client_domains/${linkId}`, {
+        withCredentials: true
+      })
+      .then(response => {
+        this.setState({
+          clientDomains: this.state.clientDomains.filter(clientDomain => {
+            return clientDomain.id !== linkId;
+          })
+        });
+        return response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    event.preventDefault();
   }
 
   createNewWhiteListLink(event) {
@@ -72,7 +92,12 @@ export default class WhiteListedLinks extends Component {
   render() {
     const clientDomainList = this.state.clientDomains.map(clientDomain => {
       return (
-        <SingleRecordListItem key={clientDomain.id} item={clientDomain.url} />
+        <SingleRecordListItem
+          key={clientDomain.id}
+          item={clientDomain.url}
+          handleWhiteListLinkDelete={e =>
+            this.handleWhiteListLinkDelete(e, clientDomain.id)}
+        />
       );
     });
 
