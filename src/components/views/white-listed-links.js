@@ -32,6 +32,28 @@ export default class WhiteListedLinks extends Component {
       });
   }
 
+  createNewWhiteListLink() {
+    axios
+      .post(
+        "https://api.devcamp.space/client_domains",
+        {
+          client_domain: {
+            url: "https://testing.com"
+          }
+        },
+        {
+          withCredentials: true
+        }
+      )
+      .then(response => {
+        console.log("createNewWhiteListLink", response);
+        return response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     const clientDomainList = this.state.clientDomains.map(clientDomain => {
       return (
