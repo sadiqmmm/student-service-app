@@ -76,13 +76,13 @@ export default class WhiteListedLinks extends Component {
       );
     });
 
+    // Add the ability to delete links
     return (
       <div>
         <DashboardNavigation />
 
         <div className="card">
           <h2>White List Links</h2>
-
           <div className="list-container">{clientDomainList}</div>
         </div>
 
@@ -90,7 +90,8 @@ export default class WhiteListedLinks extends Component {
           <h2>Add URL</h2>
 
           <form onSubmit={this.createNewWhiteListLink} className="form-wrapper">
-            <div className="input-elements">
+            <div className="input-elements three-icon-grid">
+              <i className="fas fa-link" />
               <div className="form-element-group">
                 <input
                   type="text"
@@ -101,6 +102,10 @@ export default class WhiteListedLinks extends Component {
                   className="full-width-element"
                 />
               </div>
+
+              <button type="submit">
+                <i className="far fa-plus-square" />
+              </button>
             </div>
           </form>
         </div>
