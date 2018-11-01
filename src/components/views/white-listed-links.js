@@ -9,8 +9,12 @@ export default class WhiteListedLinks extends Component {
     super();
 
     this.state = {
-      clientDomains: []
+      clientDomains: [],
+      linkUrl: ""
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.createNewWhiteListLink = this.createNewWhiteListLink.bind(this);
   }
 
   componentDidMount() {
@@ -32,13 +36,17 @@ export default class WhiteListedLinks extends Component {
       });
   }
 
-  createNewWhiteListLink() {
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  createNewWhiteListLink(event) {
     axios
       .post(
         "https://api.devcamp.space/client_domains",
         {
           client_domain: {
-            url: "https://testing.com"
+            url: this.state.linkUrl
           }
         },
         {
@@ -46,12 +54,19 @@ export default class WhiteListedLinks extends Component {
         }
       )
       .then(response => {
-        console.log("createNewWhiteListLink", response);
+        this.setState({
+          linkUrl: "",
+          clientDomains: [
+            ...this.state.clientDomains,
+            response.data.client_domain
+          ]
+        });
         return response.data;
       })
       .catch(error => {
         console.log(error);
       });
+    event.preventDefault();
   }
 
   render() {
@@ -69,6 +84,25 @@ export default class WhiteListedLinks extends Component {
           <h2>White List Links</h2>
 
           <div className="list-container">{clientDomainList}</div>
+        </div>
+
+        <div className="card">
+          <h2>Add URL</h2>
+
+          <form onSubmit={this.createNewWhiteListLink} className="form-wrapper">
+            <div className="input-elements">
+              <div className="form-element-group">
+                <input
+                  type="text"
+                  name="linkUrl"
+                  placeholder="https://www.yoursite.com"
+                  value={this.state.linkUrl}
+                  onChange={this.handleChange}
+                  className="full-width-element"
+                />
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     );

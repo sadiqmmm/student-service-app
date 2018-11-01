@@ -50,7 +50,7 @@ class NavLinks extends Component {
               to="/white-listed-links"
               activeClassName="active-nav-link"
             >
-              <i class="fas fa-project-diagram" />
+              <i className="fas fa-project-diagram" />
             </NavLink>
           </div>
 
