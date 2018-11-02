@@ -23,8 +23,6 @@ export default class ProjectDetail extends Component {
     };
 
     this.getProjectDetails = this.getProjectDetails.bind(this);
-    this.selectProject = this.selectProject.bind(this);
-    this.getData = this.getData.bind(this);
   }
 
   componentDidMount() {
@@ -33,7 +31,6 @@ export default class ProjectDetail extends Component {
         if (res.logged_in) {
           this.setState({ currentClient: res.current_client });
           this.getProjectDetails();
-          this.getData();
         } else {
           this.props.history.push("/");
         }
@@ -66,39 +63,8 @@ export default class ProjectDetail extends Component {
       });
   }
 
-  selectProject() {
-    switch (this.props.match.params.slug) {
-      case "portfolio":
-        this.setState({ projectDataEndpoint: "portfolio_items" });
-    }
-    console.log("project slug state", this.state.projectDataEndpoint);
-  }
-
   getSubdomain() {
     return this.state.currentClient.subdomain;
-  }
-
-  getData() {
-    this.selectProject();
-
-    axios
-      .get(
-        `https://${this.getSubdomain()}.devcamp.space/${this.state
-          .projectDataEndpoint}`,
-        {
-          withCredentials: true
-        }
-      )
-      .then(response => {
-        this.setState({
-          projectData: {
-            items: [...response.data[this.state.projectDataEndpoint]]
-          }
-        });
-      })
-      .catch(error => {
-        console.log("Errors");
-      });
   }
 
   render() {
@@ -113,14 +79,6 @@ export default class ProjectDetail extends Component {
       return <ListItem key={endpoint.id} {...endpoint} subdomain={subdomain} />;
     });
 
-    const dataList = this.state.projectData.items.map(item => {
-      return <PortfolioItem key={item.id} {...item} />;
-    });
-
-    // TODO
-    // conditional for other projects
-    // Conditional for if no data is provided
-
     return (
       <div>
         <DashboardNavigation />
@@ -134,12 +92,6 @@ export default class ProjectDetail extends Component {
           <h2>API Endpoints</h2>
 
           <div className="list-container">{endpointList}</div>
-        </div>
-
-        <div className="card">
-          <h2>{title} Data</h2>
-
-          <div className="list-container">{dataList}</div>
         </div>
       </div>
     );
