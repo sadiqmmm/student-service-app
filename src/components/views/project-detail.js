@@ -74,7 +74,8 @@ export default class ProjectDetail extends Component {
             title={project_table.formatted_name}
             logo={this.state.project.logo}
             language={this.state.project.language}
-            url={`/project/${project_table.table_name}`}
+            url={`/project/${this.state.project
+              .slug}/data/${project_table.table_name}`}
           />
         );
       }

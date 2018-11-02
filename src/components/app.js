@@ -22,14 +22,14 @@ export default class App extends Component {
         <Router>
           <div>
             <Switch>
-              <Route exact path="/" component={Home} />
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/white-listed-links" component={WhiteListedLinks} />
-              <Route path="/project/:slug" component={ProjectDetail} />
               <Route
-                path="/project/:slug/data/:table-name"
+                path="/project/:slug/data/:table_name"
                 component={DataDetail}
               />
+              <Route path="/project/:slug" component={ProjectDetail} />
+              <Route path="/" component={Home} />
               <Route component={NoMatch} />
             </Switch>
           </div>
