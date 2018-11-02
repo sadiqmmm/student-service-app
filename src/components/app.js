@@ -11,6 +11,7 @@ import {
 import Home from "./views/homepage";
 import Dashboard from "./views/dashboard";
 import ProjectDetail from "./views/project-detail";
+import DataDetail from "./views/data-detail";
 import WhiteListedLinks from "./views/white-listed-links";
 import NoMatch from "./views/no-match";
 
@@ -25,6 +26,10 @@ export default class App extends Component {
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/white-listed-links" component={WhiteListedLinks} />
               <Route path="/project/:slug" component={ProjectDetail} />
+              <Route
+                path="/project/:slug/data/:table-name"
+                component={DataDetail}
+              />
               <Route component={NoMatch} />
             </Switch>
           </div>
