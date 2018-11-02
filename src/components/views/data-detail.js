@@ -4,7 +4,7 @@ import axios from "axios";
 import loggedIn from "../helpers/logged-in";
 import DashboardNavigation from "../partials/navigation";
 import ListItem from "../partials/list-item";
-import PortfolioItem from "../partials/portfolio-item";
+import DataItem from "../partials/data-item";
 
 export default class DataDetail extends Component {
   constructor(props) {
@@ -15,15 +15,13 @@ export default class DataDetail extends Component {
       title: "",
       currentClient: {},
       project: {},
-      endpointList: [],
-      projectDataEndpoint: "",
+      projectDataEndpoint: this.props.match.params.table_name,
       projectData: {
         items: []
       }
     };
 
     this.getProjectDetails = this.getProjectDetails.bind(this);
-    this.selectProject = this.selectProject.bind(this);
     this.getData = this.getData.bind(this);
   }
 
@@ -33,7 +31,6 @@ export default class DataDetail extends Component {
         if (res.logged_in) {
           this.setState({ currentClient: res.current_client });
           this.getProjectDetails();
-          this.getData();
         } else {
           this.props.history.push("/");
         }
@@ -53,25 +50,14 @@ export default class DataDetail extends Component {
         }
       )
       .then(response => {
-        console.log(response.data);
         this.setState({
-          project: response.data.project,
-          endpointList: response.data.project.endpoints
+          project: response.data.project
         });
-
-        console.log("client project", response);
+        this.getData();
       })
       .catch(error => {
         console.log("Errors");
       });
-  }
-
-  selectProject() {
-    switch (this.props.match.params.slug) {
-      case "portfolio":
-        this.setState({ projectDataEndpoint: "portfolio_items" });
-    }
-    console.log("project slug state", this.state.projectDataEndpoint);
   }
 
   getSubdomain() {
@@ -79,12 +65,10 @@ export default class DataDetail extends Component {
   }
 
   getData() {
-    this.selectProject();
-
     axios
       .get(
-        `https://${this.getSubdomain()}.devcamp.space/${this.state
-          .projectDataEndpoint}`,
+        `https://${this.getSubdomain()}.devcamp.space/${this.state.project
+          .route_namespace}/${this.state.projectDataEndpoint}`,
         {
           withCredentials: true
         }
@@ -95,6 +79,8 @@ export default class DataDetail extends Component {
             items: [...response.data[this.state.projectDataEndpoint]]
           }
         });
+
+        console.log("getData", Object.keys(this.state.projectData.items[0]));
       })
       .catch(error => {
         console.log("Errors");
@@ -115,13 +101,13 @@ export default class DataDetail extends Component {
     } = this.state.project;
     const { subdomain } = this.state.currentClient;
 
-    const endpointList = this.state.endpointList.map(endpoint => {
-      return <ListItem key={endpoint.id} {...endpoint} subdomain={subdomain} />;
+    const dataList = this.state.projectData.items.map(item => {
+      console.log("item", Object.values(item));
+      return <DataItem key={item.id} data={[Object.values(item)]} />;
     });
 
-    const dataList = this.state.projectData.items.map(item => {
-      return <PortfolioItem key={item.id} {...item} />;
-    });
+    // TODO
+    // Customize the data items so that the table is dynamic with headers and data elements
 
     return (
       <div>
@@ -133,15 +119,11 @@ export default class DataDetail extends Component {
         </div>
 
         <div className="card">
-          <h2>API Endpoints</h2>
-
-          <div className="list-container">{endpointList}</div>
-        </div>
-
-        <div className="card">
-          <h2>{title} Data</h2>
-
-          <div className="list-container">{dataList}</div>
+          <div
+            className={`list-container-${this.state.projectData.items.length}`}
+          >
+            {dataList}
+          </div>
         </div>
       </div>
     );

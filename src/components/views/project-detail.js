@@ -4,7 +4,6 @@ import axios from "axios";
 import loggedIn from "../helpers/logged-in";
 import DashboardNavigation from "../partials/navigation";
 import ListItem from "../partials/list-item";
-import PortfolioItem from "../partials/portfolio-item";
 import ProjectCard from "../partials/project-card";
 
 export default class ProjectDetail extends Component {
