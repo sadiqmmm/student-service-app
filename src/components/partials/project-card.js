@@ -7,7 +7,7 @@ export default function(props) {
       <div className="center-text flex-center">
         <h2>{props.title}</h2>
         <img src={props.logo} alt={props.language} />
-        <Link exact to={props.url} className="link-btn btn-primary">
+        <Link to={props.url} className="link-btn btn-primary">
           <button>View Data</button>
         </Link>
       </div>

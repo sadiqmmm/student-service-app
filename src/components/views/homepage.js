@@ -37,8 +37,8 @@ export default class Homepage extends Component {
           this.props.history.push("/dashboard");
         } else {
           this.setState({ loggedInStatus: false });
+          this.setState({ isLoading: false });
         }
-        this.setState({ isLoading: false });
       })
       .catch(error => {
         console.log("nope", error);

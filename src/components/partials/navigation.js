@@ -32,24 +32,20 @@ class NavLinks extends Component {
     return (
       <div className="nav-wrapper">
         <div className="left-side">
-          <NavLink exact to="/">
+          <NavLink to="/">
             <Logo />
           </NavLink>
         </div>
 
         <div className="right-side">
           <div className="nav-icon">
-            <NavLink exact to="/" activeClassName="active-nav-link">
+            <NavLink to="/" activeClassName="active-nav-link">
               <i className="fas fa-database" />
             </NavLink>
           </div>
 
           <div className="nav-icon">
-            <NavLink
-              exact
-              to="/white-listed-links"
-              activeClassName="active-nav-link"
-            >
+            <NavLink to="/white-listed-links" activeClassName="active-nav-link">
               <i className="fas fa-project-diagram" />
             </NavLink>
           </div>
