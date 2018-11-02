@@ -5,6 +5,7 @@ import loggedIn from "../helpers/logged-in";
 import DashboardNavigation from "../partials/navigation";
 import ListItem from "../partials/list-item";
 import PortfolioItem from "../partials/portfolio-item";
+import ProjectCard from "../partials/project-card";
 
 export default class ProjectDetail extends Component {
   constructor(props) {
@@ -15,11 +16,7 @@ export default class ProjectDetail extends Component {
       title: "",
       currentClient: {},
       project: {},
-      endpointList: [],
-      projectDataEndpoint: "",
-      projectData: {
-        items: []
-      }
+      endpointList: []
     };
 
     this.getProjectDetails = this.getProjectDetails.bind(this);
@@ -34,7 +31,6 @@ export default class ProjectDetail extends Component {
         } else {
           this.props.history.push("/");
         }
-        this.setState({ isLoading: false });
       })
       .catch(error => {
         console.log("not signed in", error);
@@ -50,13 +46,11 @@ export default class ProjectDetail extends Component {
         }
       )
       .then(response => {
-        console.log(response.data);
         this.setState({
           project: response.data.project,
-          endpointList: response.data.project.endpoints
+          endpointList: response.data.project.endpoints,
+          isLoading: false
         });
-
-        console.log("client project", response);
       })
       .catch(error => {
         console.log("Errors");
@@ -71,6 +65,20 @@ export default class ProjectDetail extends Component {
     if (this.state.isLoading) {
       return <div>Loading...</div>;
     }
+
+    const databaseTableList = this.state.project.project_tables.map(
+      project_table => {
+        return (
+          <ProjectCard
+            key={project_table.id}
+            title={project_table.formatted_name}
+            logo={this.state.project.logo}
+            language={this.state.project.language}
+            url={`/project/${project_table.table_name}`}
+          />
+        );
+      }
+    );
 
     const { title, language, white_logo, slug } = this.state.project;
     const { subdomain } = this.state.currentClient;
@@ -93,6 +101,10 @@ export default class ProjectDetail extends Component {
 
           <div className="list-container">{endpointList}</div>
         </div>
+
+        <h2>Select a database table for your project to view data</h2>
+
+        <div className="project-cards-wrapper">{databaseTableList}</div>
       </div>
     );
   }

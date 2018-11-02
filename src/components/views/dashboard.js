@@ -52,7 +52,15 @@ export default class Dashboard extends Component {
 
   render() {
     const projectList = this.state.projects.map(project => {
-      return <ProjectCard key={project.id} project={project} />;
+      return (
+        <ProjectCard
+          key={project.id}
+          title={project.title}
+          logo={project.logo}
+          language={project.language}
+          url={`/project/${project.slug}`}
+        />
+      );
     });
 
     if (this.state.isLoading) {
