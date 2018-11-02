@@ -106,7 +106,13 @@ export default class DataDetail extends Component {
       return <div>Loading...</div>;
     }
 
-    const { title, language, white_logo, slug } = this.state.project;
+    const {
+      title,
+      language,
+      white_logo,
+      slug,
+      route_namespace
+    } = this.state.project;
     const { subdomain } = this.state.currentClient;
 
     const endpointList = this.state.endpointList.map(endpoint => {
@@ -116,10 +122,6 @@ export default class DataDetail extends Component {
     const dataList = this.state.projectData.items.map(item => {
       return <PortfolioItem key={item.id} {...item} />;
     });
-
-    // TODO
-    // conditional for other projects
-    // Conditional for if no data is provided
 
     return (
       <div>

@@ -1,13 +1,13 @@
 import React from "react";
 
-const linkBuilder = (subdomain, endpointPath) => {
-  return `https://${subdomain}.devcamp.space/${endpointPath}`;
+const linkBuilder = (subdomain, routeNamespace, endpointPath) => {
+  return `https://${subdomain}.devcamp.space/${routeNamespace}/${endpointPath}`;
 };
 
 const ListItem = props => {
-  const { title, http_verb, link, subdomain } = props;
+  const { title, http_verb, link, subdomain, routeNamespace } = props;
 
-  const fullLink = linkBuilder(subdomain, link);
+  const fullLink = linkBuilder(subdomain, routeNamespace, link);
 
   return (
     <div className="endpoint-list-item">

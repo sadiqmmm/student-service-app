@@ -81,11 +81,24 @@ export default class ProjectDetail extends Component {
       }
     );
 
-    const { title, language, white_logo, slug } = this.state.project;
+    const {
+      title,
+      language,
+      white_logo,
+      slug,
+      route_namespace
+    } = this.state.project;
     const { subdomain } = this.state.currentClient;
 
     const endpointList = this.state.endpointList.map(endpoint => {
-      return <ListItem key={endpoint.id} {...endpoint} subdomain={subdomain} />;
+      return (
+        <ListItem
+          key={endpoint.id}
+          {...endpoint}
+          subdomain={subdomain}
+          routeNamespace={route_namespace}
+        />
+      );
     });
 
     return (
