@@ -5,6 +5,7 @@ import loggedIn from "../helpers/logged-in";
 import DashboardNavigation from "../partials/navigation";
 import ListItem from "../partials/list-item";
 import DataItem from "../partials/data-item";
+import DataInputElement from "../partials/data-input-element";
 
 export default class DataDetail extends Component {
   constructor(props) {
@@ -26,6 +27,8 @@ export default class DataDetail extends Component {
     this.getData = this.getData.bind(this);
     this.dataList = this.dataList.bind(this);
     this.handleRecordDelete = this.handleRecordDelete.bind(this);
+    this.createNewRecord = this.createNewRecord.bind(this);
+    this.handleInputValueChange = this.handleInputValueChange.bind(this);
   }
 
   componentDidMount() {
@@ -137,8 +140,60 @@ export default class DataDetail extends Component {
       });
   }
 
+  buildForm() {
+    let formData = new FormData();
+    // formData.append("portfolio_item[name]", "MySpace");
+    // formData.append("portfolio_item[description]", "Some desc");
+    // formData.append("portfolio_item[url]", "https://myspace.com");
+    return formData;
+  }
+
+  createNewRecord(event) {
+    const dataModelName = this.state.projectDataEndpoint.slice(0, -1);
+    axios
+      .post(
+        `https://${this.getSubdomain()}.devcamp.space/${this.state.project
+          .route_namespace}/${this.state.projectDataEndpoint}`,
+        this.buildForm(),
+        {
+          withCredentials: true
+        }
+      )
+      .then(response => {
+        this.setState({
+          projectData: {
+            headers: this.state.projectData.headers,
+            items: [
+              ...this.state.projectData.items,
+              response.data[dataModelName]
+            ]
+          }
+        });
+        return response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    event.preventDefault();
+  }
+
+  handleInputValueChange(event, name) {
+    const dataModelName = this.state.projectDataEndpoint.slice(0, -1);
+    this.setState({
+      [`${dataModelName}[${name}]`]: event.target.value
+    });
+
+    console.log(
+      Object.keys(this.state).filter(el => el.startsWith(dataModelName))
+    );
+  }
+
   // TODO
   // Create ability to add records
+  // continue building out the handleInputValueChange function
+  //  and connect it with the buildForm
+  //  and create a black list of attrs (id, etc)
+  //  and then change the input types for photos
   // Implement the ability to edit records
   // Filter for links with regex
   // Show images
@@ -164,6 +219,16 @@ export default class DataDetail extends Component {
       return <span key={header}>{header}</span>;
     });
 
+    const inputElements = this.state.projectData.headers.map(header => {
+      return (
+        <DataInputElement
+          key={header}
+          name={header}
+          handleInputValueChange={e => this.handleInputValueChange(e, header)}
+        />
+      );
+    });
+
     return (
       <div>
         <DashboardNavigation />
@@ -186,6 +251,21 @@ export default class DataDetail extends Component {
             {recordsInDatabase ? headers : ""}
           </div>
           <div>{recordsInDatabase ? this.dataList() : ""}</div>
+        </div>
+
+        <div className="card">
+          <h2>Add a record</h2>
+
+          <form onSubmit={this.createNewRecord} className="form-wrapper">
+            <div className="input-elements three-icon-grid">
+              <i className="fas fa-link" />
+              <div className="form-element-group">{inputElements}</div>
+
+              <button type="submit">
+                <i className="far fa-plus-square" />
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     );
