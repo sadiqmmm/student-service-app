@@ -101,7 +101,6 @@ export default class WhiteListedLinks extends Component {
       );
     });
 
-    // Add the ability to delete links
     return (
       <div>
         <DashboardNavigation />

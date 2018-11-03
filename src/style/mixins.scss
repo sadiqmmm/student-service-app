@@ -3,6 +3,16 @@
   word-wrap: break-word;
 }
 
+@mixin list-header {
+  font-weight: 900;
+  color: $teal;
+  border-bottom: 2px solid $teal;
+
+  &:hover {
+    border-bottom: 2px solid transparent;
+  }
+}
+
 @mixin list-item {
   display: grid;
   grid-gap: 21px;

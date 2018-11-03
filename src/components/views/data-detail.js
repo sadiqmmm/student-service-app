@@ -24,6 +24,8 @@ export default class DataDetail extends Component {
 
     this.getProjectDetails = this.getProjectDetails.bind(this);
     this.getData = this.getData.bind(this);
+    this.dataList = this.dataList.bind(this);
+    this.handleRecordDelete = this.handleRecordDelete.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +37,6 @@ export default class DataDetail extends Component {
         } else {
           this.props.history.push("/");
         }
-        this.setState({ isLoading: false });
       })
       .catch(error => {
         console.log("not signed in", error);
@@ -52,7 +53,8 @@ export default class DataDetail extends Component {
       )
       .then(response => {
         this.setState({
-          project: response.data.project
+          project: response.data.project,
+          isLoading: false
         });
         this.getData();
       })
@@ -65,6 +67,49 @@ export default class DataDetail extends Component {
     return this.state.currentClient.subdomain;
   }
 
+  handleRecordDelete(event, id) {
+    axios
+      .delete(
+        `https://${this.getSubdomain()}.devcamp.space/${this.state.project
+          .route_namespace}/${this.state.projectDataEndpoint}/${id}`,
+        {
+          withCredentials: true
+        }
+      )
+      .then(response => {
+        const filteredRecords = this.state.projectData.items.filter(
+          dataRecord => {
+            return dataRecord.id !== id;
+          }
+        );
+
+        this.setState({
+          projectData: {
+            headers: this.state.projectData.headers,
+            items: [...filteredRecords]
+          }
+        });
+
+        return response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    event.preventDefault();
+  }
+
+  dataList() {
+    return this.state.projectData.items.map(item => {
+      return (
+        <DataItem
+          key={item.id}
+          data={Object.values(item)}
+          handleRecordDelete={e => this.handleRecordDelete(e, item.id)}
+        />
+      );
+    });
+  }
+
   getData() {
     axios
       .get(
@@ -75,20 +120,17 @@ export default class DataDetail extends Component {
         }
       )
       .then(response => {
-        console.log(
-          "getData",
-          Object.keys(response.data[this.state.projectDataEndpoint][0])
-        );
-        this.setState({
-          projectData: {
-            items: [...response.data[this.state.projectDataEndpoint]],
-            headers: [
-              ...Object.keys(response.data[this.state.projectDataEndpoint][0])
-            ]
-          }
-        });
+        const collectionReceived =
+          response.data[this.state.projectDataEndpoint];
 
-        console.log("updated state", this.state.projectData);
+        if (collectionReceived.length > 0) {
+          this.setState({
+            projectData: {
+              items: [...collectionReceived],
+              headers: collectionReceived[0]["column_names_merged_with_images"]
+            }
+          });
+        }
       })
       .catch(error => {
         console.log("Errors", error);
@@ -109,9 +151,7 @@ export default class DataDetail extends Component {
     } = this.state.project;
     const { subdomain } = this.state.currentClient;
 
-    const dataList = this.state.projectData.items.map(item => {
-      return <DataItem key={item.id} data={Object.values(item)} />;
-    });
+    const recordsInDatabase = this.state.projectData.items.length > 0;
 
     const headers = this.state.projectData.headers.map(header => {
       return <span key={header}>{header}</span>;
@@ -128,12 +168,17 @@ export default class DataDetail extends Component {
 
         <div className="card">
           <div
-            className={`list-headers-${this.state.projectData.items.length +
-              1}`}
+            className={
+              recordsInDatabase ? (
+                `list-headers-${this.state.projectData.headers.length + 1}`
+              ) : (
+                ""
+              )
+            }
           >
-            {headers}
+            {recordsInDatabase ? headers : ""}
           </div>
-          <div className="">{dataList}</div>
+          <div>{recordsInDatabase ? this.dataList() : ""}</div>
         </div>
       </div>
     );
