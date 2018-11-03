@@ -17,6 +17,7 @@ export default class DataDetail extends Component {
       project: {},
       projectDataEndpoint: this.props.match.params.table_name,
       projectData: {
+        headers: [],
         items: []
       }
     };
@@ -74,16 +75,23 @@ export default class DataDetail extends Component {
         }
       )
       .then(response => {
+        console.log(
+          "getData",
+          Object.keys(response.data[this.state.projectDataEndpoint][0])
+        );
         this.setState({
           projectData: {
-            items: [...response.data[this.state.projectDataEndpoint]]
+            items: [...response.data[this.state.projectDataEndpoint]],
+            headers: [
+              ...Object.keys(response.data[this.state.projectDataEndpoint][0])
+            ]
           }
         });
 
-        console.log("getData", Object.keys(this.state.projectData.items[0]));
+        console.log("updated state", this.state.projectData);
       })
       .catch(error => {
-        console.log("Errors");
+        console.log("Errors", error);
       });
   }
 
@@ -102,12 +110,12 @@ export default class DataDetail extends Component {
     const { subdomain } = this.state.currentClient;
 
     const dataList = this.state.projectData.items.map(item => {
-      console.log("item", Object.values(item));
-      return <DataItem key={item.id} data={[Object.values(item)]} />;
+      return <DataItem key={item.id} data={Object.values(item)} />;
     });
 
-    // TODO
-    // Customize the data items so that the table is dynamic with headers and data elements
+    const headers = this.state.projectData.headers.map(header => {
+      return <span key={header}>{header}</span>;
+    });
 
     return (
       <div>
@@ -120,10 +128,12 @@ export default class DataDetail extends Component {
 
         <div className="card">
           <div
-            className={`list-container-${this.state.projectData.items.length}`}
+            className={`list-headers-${this.state.projectData.items.length +
+              1}`}
           >
-            {dataList}
+            {headers}
           </div>
+          <div className="">{dataList}</div>
         </div>
       </div>
     );

@@ -1,0 +1,32 @@
+.dynamic-row-1 {
+  @include list-item();
+  grid-template-columns: 1fr;
+}
+
+.dynamic-row-6 {
+  @include list-item();
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.list-headers-7 {
+  @include list-item();
+  font-weight: 900;
+  color: $teal;
+  grid-template-columns: 20px 15% 15% 15% 15% 15% 15%;
+  border-bottom: 2px solid $teal;
+
+  &:hover {
+    border-bottom: 2px solid transparent;
+  }
+}
+
+.dynamic-row-7 {
+  @include list-item();
+  @include data-item();
+  grid-template-columns: 20px 15% 15% 15% 15% 15% 15%;
+}
+
+.list-headers-8 {
+  display: grid;
+  grid-template-columns: 20px 15% 15% 15% 15% 15% 15% 15%;
+}
