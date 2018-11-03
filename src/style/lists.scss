@@ -30,26 +30,4 @@
   .title {
     font-weight: 900;
   }
-
-  .actions {
-    button {
-      background-color: transparent;
-      border: transparent;
-
-      i {
-        font-size: 3em;
-        color: $warning;
-        transition: all 0.5s ease-in-out;
-
-        &:hover {
-          cursor: pointer;
-          color: $darkwarning;
-        }
-      }
-
-      &:focus {
-        outline: none;
-      }
-    }
-  }
 }

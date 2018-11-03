@@ -137,6 +137,13 @@ export default class DataDetail extends Component {
       });
   }
 
+  // TODO
+  // Create ability to add records
+  // Implement the ability to edit records
+  // Filter for links with regex
+  // Show images
+  // Add other projects
+
   render() {
     if (this.state.isLoading) {
       return <div>Loading...</div>;

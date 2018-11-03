@@ -24,4 +24,26 @@
   &:hover {
     border-bottom: 2px solid $teal;
   }
+
+  .actions {
+    button {
+      background-color: transparent;
+      border: transparent;
+
+      i {
+        font-size: 2em;
+        color: $warning;
+        transition: all 0.5s ease-in-out;
+
+        &:hover {
+          cursor: pointer;
+          color: $darkwarning;
+        }
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 }
