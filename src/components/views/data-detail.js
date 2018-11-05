@@ -29,6 +29,9 @@ export default class DataDetail extends Component {
     this.handleRecordDelete = this.handleRecordDelete.bind(this);
     this.createNewRecord = this.createNewRecord.bind(this);
     this.handleInputValueChange = this.handleInputValueChange.bind(this);
+    this.allowableFormAttributes = this.allowableFormAttributes.bind(this);
+    this.inputElements = this.inputElements.bind(this);
+    this.clearForm = this.clearForm.bind(this);
   }
 
   componentDidMount() {
@@ -142,9 +145,14 @@ export default class DataDetail extends Component {
 
   buildForm() {
     let formData = new FormData();
-    // formData.append("portfolio_item[name]", "MySpace");
-    // formData.append("portfolio_item[description]", "Some desc");
-    // formData.append("portfolio_item[url]", "https://myspace.com");
+    for (let formAttribute of this.allowableFormAttributes()) {
+      formData.append(
+        `${this.state.projectDataEndpoint.slice(0, -1)}[${formAttribute}]`,
+        this.state[
+          `${this.state.projectDataEndpoint.slice(0, -1)}[${formAttribute}]`
+        ]
+      );
+    }
     return formData;
   }
 
@@ -169,12 +177,22 @@ export default class DataDetail extends Component {
             ]
           }
         });
+
+        this.clearForm();
         return response.data;
       })
       .catch(error => {
         console.log(error);
       });
     event.preventDefault();
+  }
+
+  allowableFormAttributes() {
+    return this.state.projectData.headers.filter(header => {
+      if (header !== "id" && header !== "logo" && !header.endsWith("_image")) {
+        return header;
+      }
+    });
   }
 
   handleInputValueChange(event, name) {
@@ -188,16 +206,37 @@ export default class DataDetail extends Component {
     );
   }
 
-  // TODO
-  // Create ability to add records
-  // continue building out the handleInputValueChange function
-  //  and connect it with the buildForm
-  //  and create a black list of attrs (id, etc)
-  //  and then change the input types for photos
-  // Implement the ability to edit records
-  // Filter for links with regex
-  // Show images
-  // Add other projects
+  clearForm() {
+    // TODO
+    // Clear the form elements when a new record is created. Right now it's
+    // clearing the state, look into refs
+    //
+    // Implement the ability to edit records
+    // Filter for links with regex
+    // Show images
+    // Add other projects
+
+    Object.keys(this.state).forEach(stateItem => {
+      if (stateItem.startsWith(this.state.projectDataEndpoint.slice(0, -1))) {
+        this.setState({ [stateItem]: "" });
+      }
+    });
+
+    console.log("state from clear form", this.state);
+  }
+
+  inputElements() {
+    return this.allowableFormAttributes().map(header => {
+      return (
+        <DataInputElement
+          key={header}
+          name={header}
+          handleInputValueChange={e => this.handleInputValueChange(e, header)}
+          clearForm={() => this.clearForm}
+        />
+      );
+    });
+  }
 
   render() {
     if (this.state.isLoading) {
@@ -217,16 +256,6 @@ export default class DataDetail extends Component {
 
     const headers = this.state.projectData.headers.map(header => {
       return <span key={header}>{header}</span>;
-    });
-
-    const inputElements = this.state.projectData.headers.map(header => {
-      return (
-        <DataInputElement
-          key={header}
-          name={header}
-          handleInputValueChange={e => this.handleInputValueChange(e, header)}
-        />
-      );
     });
 
     return (
@@ -259,7 +288,7 @@ export default class DataDetail extends Component {
           <form onSubmit={this.createNewRecord} className="form-wrapper">
             <div className="input-elements three-icon-grid">
               <i className="fas fa-link" />
-              <div className="form-element-group">{inputElements}</div>
+              <div className="form-element-group">{this.inputElements()}</div>
 
               <button type="submit">
                 <i className="far fa-plus-square" />
