@@ -166,7 +166,6 @@ export default class DataDetail extends Component {
   }
 
   createNewRecord(event) {
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
     const dataModelName = this.state.projectDataEndpoint.slice(0, -1);
     axios
       .post(
@@ -207,9 +206,16 @@ export default class DataDetail extends Component {
 
   handleInputValueChange(event, name) {
     const dataModelName = this.state.projectDataEndpoint.slice(0, -1);
-    this.setState({
-      [`${dataModelName}[${name}]`]: event.target.value
-    });
+
+    if (event.target.files) {
+      this.setState({
+        [`${dataModelName}[${name}]`]: event.target.files[0]
+      });
+    } else {
+      this.setState({
+        [`${dataModelName}[${name}]`]: event.target.value
+      });
+    }
 
     console.log(
       Object.keys(this.state).filter(el => el.startsWith(dataModelName))
@@ -218,8 +224,6 @@ export default class DataDetail extends Component {
 
   clearForm() {
     // TODO
-    // Implement ability to upload images
-    //
     // Implement the ability to edit records
     // Add other projects
 
