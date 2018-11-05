@@ -189,10 +189,15 @@ export default class DataDetail extends Component {
 
   allowableFormAttributes() {
     return this.state.projectData.headers.filter(header => {
-      if (header !== "id" && header !== "logo" && !header.endsWith("_image")) {
+      if (header !== "id") {
         return header;
       }
     });
+    // return this.state.projectData.headers.filter(header => {
+    //   if (header !== "id" && header !== "logo" && !header.endsWith("_image")) {
+    //     return header;
+    //   }
+    // });
   }
 
   handleInputValueChange(event, name) {
