@@ -208,9 +208,6 @@ export default class DataDetail extends Component {
 
   clearForm() {
     // TODO
-    // Clear the form elements when a new record is created. Right now it's
-    // clearing the state, look into refs
-    //
     // Implement the ability to edit records
     // Filter for links with regex
     // Show images
@@ -222,7 +219,9 @@ export default class DataDetail extends Component {
       }
     });
 
-    console.log("state from clear form", this.state);
+    document.querySelectorAll(".data-input").forEach(el => {
+      el.value = "";
+    });
   }
 
   inputElements() {

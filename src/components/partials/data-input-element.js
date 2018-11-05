@@ -9,7 +9,7 @@ export default ({ name, handleInputValueChange }) => {
         id={name}
         name={name}
         onChange={handleInputValueChange}
-        className="full-width-element"
+        className="full-width-element data-input"
       />
     </div>
   );
