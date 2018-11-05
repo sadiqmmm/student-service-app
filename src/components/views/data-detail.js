@@ -146,17 +146,27 @@ export default class DataDetail extends Component {
   buildForm() {
     let formData = new FormData();
     for (let formAttribute of this.allowableFormAttributes()) {
-      formData.append(
-        `${this.state.projectDataEndpoint.slice(0, -1)}[${formAttribute}]`,
-        this.state[
+      if (
+        (formAttribute.endsWith("_image") || formAttribute === "logo") &&
+        !this.state[
           `${this.state.projectDataEndpoint.slice(0, -1)}[${formAttribute}]`
         ]
-      );
+      ) {
+        continue;
+      } else {
+        formData.append(
+          `${this.state.projectDataEndpoint.slice(0, -1)}[${formAttribute}]`,
+          this.state[
+            `${this.state.projectDataEndpoint.slice(0, -1)}[${formAttribute}]`
+          ]
+        );
+      }
     }
     return formData;
   }
 
   createNewRecord(event) {
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
     const dataModelName = this.state.projectDataEndpoint.slice(0, -1);
     axios
       .post(
@@ -189,7 +199,7 @@ export default class DataDetail extends Component {
 
   allowableFormAttributes() {
     return this.state.projectData.headers.filter(header => {
-      if (header !== "id" && header !== "logo" && !header.endsWith("_image")) {
+      if (header !== "id") {
         return header;
       }
     });
