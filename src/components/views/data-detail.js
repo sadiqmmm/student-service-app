@@ -189,15 +189,10 @@ export default class DataDetail extends Component {
 
   allowableFormAttributes() {
     return this.state.projectData.headers.filter(header => {
-      if (header !== "id") {
+      if (header !== "id" && header !== "logo" && !header.endsWith("_image")) {
         return header;
       }
     });
-    // return this.state.projectData.headers.filter(header => {
-    //   if (header !== "id" && header !== "logo" && !header.endsWith("_image")) {
-    //     return header;
-    //   }
-    // });
   }
 
   handleInputValueChange(event, name) {
@@ -213,9 +208,9 @@ export default class DataDetail extends Component {
 
   clearForm() {
     // TODO
+    // Implement ability to upload images
+    //
     // Implement the ability to edit records
-    // Filter for links with regex
-    // Show images
     // Add other projects
 
     Object.keys(this.state).forEach(stateItem => {
@@ -236,7 +231,6 @@ export default class DataDetail extends Component {
           key={header}
           name={header}
           handleInputValueChange={e => this.handleInputValueChange(e, header)}
-          clearForm={() => this.clearForm}
         />
       );
     });
