@@ -298,8 +298,7 @@ export default class DataDetail extends Component {
           <h2>Add a record</h2>
 
           <form onSubmit={this.createNewRecord} className="form-wrapper">
-            <div className="input-elements three-icon-grid">
-              <i className="fas fa-link" />
+            <div className="input-elements two-column-grid">
               <div className="form-element-group">{this.inputElements()}</div>
 
               <button type="submit">

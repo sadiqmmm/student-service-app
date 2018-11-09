@@ -27,34 +27,41 @@
     }
   }
 
+  .two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 55px;
+    align-items: center;
+    grid-gap: 15px;
+  }
+
   .three-icon-grid {
     display: grid;
     grid-template-columns: 20px 1fr 55px;
     align-items: center;
     grid-gap: 15px;
+  }
 
-    i {
-      font-weight: 900;
-      font-size: 1.5em;
-      color: $teal;
+  i {
+    font-weight: 900;
+    font-size: 1.5em;
+    color: $teal;
+  }
+
+  button {
+    background-color: transparent;
+    border: 1px transparent solid;
+    .fa-plus-square {
+      font-size: 4em;
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        cursor: pointer;
+        color: $darkteal;
+      }
     }
 
-    button {
-      background-color: transparent;
-      border: 1px transparent solid;
-      .fa-plus-square {
-        font-size: 4em;
-        transition: all 0.5s ease-in-out;
-
-        &:hover {
-          cursor: pointer;
-          color: $darkteal;
-        }
-      }
-
-      &:focus {
-        outline: none;
-      }
+    &:focus {
+      outline: none;
     }
   }
 }
