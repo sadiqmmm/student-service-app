@@ -137,6 +137,13 @@ export default class DataDetail extends Component {
             }
           });
         }
+
+        // TODO
+        // Fix issue where no records in the db show
+        // the empty null record.
+        // Then figure out which tables you want to show
+        // for the devworkflow project
+        console.log("project data", this.state.projectData.items);
       })
       .catch(error => {
         console.log("Errors", error);
@@ -223,10 +230,6 @@ export default class DataDetail extends Component {
   }
 
   clearForm() {
-    // TODO
-    // Implement the ability to edit records
-    // Add other projects
-
     Object.keys(this.state).forEach(stateItem => {
       if (stateItem.startsWith(this.state.projectDataEndpoint.slice(0, -1))) {
         this.setState({ [stateItem]: "" });
