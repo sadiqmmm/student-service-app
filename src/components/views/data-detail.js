@@ -129,7 +129,16 @@ export default class DataDetail extends Component {
         const collectionReceived =
           response.data[this.state.projectDataEndpoint];
 
-        if (collectionReceived.length > 0) {
+        if (collectionReceived.length === 1) {
+          this.setState({
+            projectData: {
+              items: [],
+              headers: collectionReceived[0]["column_names_merged_with_images"]
+            }
+          });
+        }
+
+        if (collectionReceived.length > 1) {
           this.setState({
             projectData: {
               items: [...collectionReceived],
@@ -137,13 +146,6 @@ export default class DataDetail extends Component {
             }
           });
         }
-
-        // TODO
-        // Fix issue where no records in the db show
-        // the empty null record.
-        // Then figure out which tables you want to show
-        // for the devworkflow project
-        console.log("project data", this.state.projectData.items);
       })
       .catch(error => {
         console.log("Errors", error);
