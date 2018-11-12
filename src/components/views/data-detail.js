@@ -126,8 +126,17 @@ export default class DataDetail extends Component {
         }
       )
       .then(response => {
+        console.log("GET DATA", response);
+
         const collectionReceived =
           response.data[this.state.projectDataEndpoint];
+
+        console.log("collectionReceived", collectionReceived);
+
+        // TODO
+        // Add column_names_merged_with_images
+        // virtual attribute to the devworkflow_user model
+        // And then add password and password_confirmation
 
         if (collectionReceived.length === 1) {
           this.setState({
