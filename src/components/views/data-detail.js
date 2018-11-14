@@ -126,17 +126,16 @@ export default class DataDetail extends Component {
         }
       )
       .then(response => {
-        console.log("GET DATA", response);
-
         const collectionReceived =
           response.data[this.state.projectDataEndpoint];
 
-        console.log("collectionReceived", collectionReceived);
-
         // TODO
-        // Add column_names_merged_with_images
-        // virtual attribute to the devworkflow_user model
-        // And then add password and password_confirmation
+        // Fix error with projects (and users)
+        // Objects are not valid as a React child (found: object with keys {id, name, email, column_names_merged_with_images})
+        // Need to see why it's working for portfolio
+        // Also need to fix the bug where the headers aren't lining up
+
+        console.log("collectionReceived", collectionReceived);
 
         if (collectionReceived.length === 1) {
           this.setState({
