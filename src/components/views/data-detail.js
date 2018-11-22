@@ -230,10 +230,6 @@ export default class DataDetail extends Component {
         [`${dataModelName}[${name}]`]: event.target.value
       });
     }
-
-    console.log(
-      Object.keys(this.state).filter(el => el.startsWith(dataModelName))
-    );
   }
 
   clearForm() {

@@ -1,8 +1,14 @@
 import React from "react";
 
 const DataItem = props => {
+  const urlMatcher = /(https?:\/\/.*\.(?:png|jpg))/i;
+
   const rowData = props.data.slice(0, -1).map((column, idx) => {
-    return <div key={idx}>{column || "null"}</div>;
+    if (urlMatcher.test(column)) {
+      return <img key={idx} src={column} style={{ width: "100%" }} />;
+    } else {
+      return <div key={idx}>{column || "null"}</div>;
+    }
   });
 
   return (
