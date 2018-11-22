@@ -133,7 +133,6 @@ export default class DataDetail extends Component {
         // Fix error with projects (and users)
         // Objects are not valid as a React child (found: object with keys {id, name, email, column_names_merged_with_images})
         // Need to see why it's working for portfolio
-        // Also need to fix the bug where the headers aren't lining up
 
         console.log("collectionReceived", collectionReceived);
 
