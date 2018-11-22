@@ -137,16 +137,14 @@ export default class DataDetail extends Component {
 
         console.log("collectionReceived", collectionReceived);
 
-        if (collectionReceived.length === 1) {
+        if (collectionReceived.length === 1 && collectionReceived.id === null) {
           this.setState({
             projectData: {
               items: [],
               headers: collectionReceived[0]["column_names_merged_with_images"]
             }
           });
-        }
-
-        if (collectionReceived.length > 1) {
+        } else {
           this.setState({
             projectData: {
               items: [...collectionReceived],
