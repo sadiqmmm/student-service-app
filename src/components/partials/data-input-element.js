@@ -30,6 +30,21 @@ export default ({ name, handleInputValueChange }) => {
         </select>
       </div>
     );
+  } else if (name === "status") {
+    return (
+      <div className="form-element-group">
+        <label htmlFor={name}>{name}</label>
+        <br />
+        <select onChange={handleInputValueChange}>
+          <option name={name} value="active">
+            Active
+          </option>
+          <option name={name} value="archived">
+            Archived
+          </option>
+        </select>
+      </div>
+    );
   } else {
     return (
       <div className="form-element-group">
