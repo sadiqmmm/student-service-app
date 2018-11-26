@@ -15,6 +15,21 @@ export default ({ name, handleInputValueChange }) => {
         />
       </div>
     );
+  } else if (name === "blog_status") {
+    return (
+      <div className="form-element-group">
+        <label htmlFor={name}>{name}</label>
+        <br />
+        <select onChange={handleInputValueChange}>
+          <option name={name} value="draft">
+            Draft
+          </option>
+          <option name={name} value="published">
+            Published
+          </option>
+        </select>
+      </div>
+    );
   } else {
     return (
       <div className="form-element-group">

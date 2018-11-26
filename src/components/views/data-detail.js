@@ -131,8 +131,6 @@ export default class DataDetail extends Component {
 
         // TODO
         // Fix error with projects (and users)
-        // Objects are not valid as a React child (found: object with keys {id, name, email, column_names_merged_with_images})
-        // Need to see why it's working for portfolio
 
         console.log("collectionReceived", collectionReceived);
 
@@ -247,11 +245,14 @@ export default class DataDetail extends Component {
   inputElements() {
     return this.allowableFormAttributes().map(header => {
       return (
-        <DataInputElement
-          key={header}
-          name={header}
-          handleInputValueChange={e => this.handleInputValueChange(e, header)}
-        />
+        <div>
+          <DataInputElement
+            key={header}
+            name={header}
+            handleInputValueChange={e => this.handleInputValueChange(e, header)}
+          />
+          <hr />
+        </div>
       );
     });
   }
