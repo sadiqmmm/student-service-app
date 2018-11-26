@@ -22,6 +22,17 @@
   grid-template-columns: 20px 1fr 20px;
 }
 
+.list-headers-4 {
+  @include list-item();
+  @include list-header();
+  grid-template-columns: 20px 20% 20% 20%;
+}
+
+.dynamic-row-4 {
+  @include list-item();
+  grid-template-columns: 20px 20% 20% 20% 20px;
+}
+
 .list-headers-5 {
   @include list-item();
   @include list-header();

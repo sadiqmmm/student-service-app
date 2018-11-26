@@ -45,6 +45,19 @@ export default ({ name, handleInputValueChange }) => {
         </select>
       </div>
     );
+  } else if (name === "password" || name === "password_confirmation") {
+    return (
+      <div className="form-element-group">
+        <label htmlFor={name}>{name}</label>
+        <input
+          type="password"
+          id={name}
+          name={name}
+          onChange={handleInputValueChange}
+          className="full-width-element data-input"
+        />
+      </div>
+    );
   } else {
     return (
       <div className="form-element-group">
