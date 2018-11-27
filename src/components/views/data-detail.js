@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 import loggedIn from "../helpers/logged-in";
 import DashboardNavigation from "../partials/navigation";
+import DataDetailHeader from "../partials/data-detail-header";
 import ListItem from "../partials/list-item";
 import DataItem from "../partials/data-item";
 import DataInputElement from "../partials/data-input-element";
@@ -281,14 +281,7 @@ export default class DataDetail extends Component {
     return (
       <div>
         <DashboardNavigation />
-
-        <Link
-          className="project-detail-header"
-          to={`/project/${this.props.match.params.slug}`}
-        >
-          <img src={white_logo} alt={slug} />
-          <h1>{title}</h1>
-        </Link>
+        <DataDetailHeader slug={slug} white_logo={white_logo} title={title} />
 
         <div className="card">
           <div
