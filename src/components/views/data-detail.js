@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import loggedIn from "../helpers/logged-in";
@@ -281,10 +282,13 @@ export default class DataDetail extends Component {
       <div>
         <DashboardNavigation />
 
-        <div className="project-detail-header">
+        <Link
+          className="project-detail-header"
+          to={`/project/${this.props.match.params.slug}`}
+        >
           <img src={white_logo} alt={slug} />
           <h1>{title}</h1>
-        </div>
+        </Link>
 
         <div className="card">
           <div
@@ -300,7 +304,6 @@ export default class DataDetail extends Component {
           </div>
           <div>{recordsInDatabase ? this.dataList() : ""}</div>
         </div>
-
         <div className="card">
           <h2>Add a record</h2>
 
