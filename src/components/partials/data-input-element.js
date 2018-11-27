@@ -3,7 +3,7 @@ import React from "react";
 export default ({ name, handleInputValueChange }) => {
   if (name.endsWith("_image") || name === "logo") {
     return (
-      <div className="form-element-group">
+      <div className="dynamic-form-element-group">
         <label htmlFor={name}>{name}</label>
         <input
           type="file"
@@ -17,7 +17,7 @@ export default ({ name, handleInputValueChange }) => {
     );
   } else if (name === "blog_status") {
     return (
-      <div className="form-element-group">
+      <div className="dynamic-form-element-group">
         <label htmlFor={name}>{name}</label>
         <br />
         <select onChange={handleInputValueChange}>
@@ -32,7 +32,7 @@ export default ({ name, handleInputValueChange }) => {
     );
   } else if (name === "status") {
     return (
-      <div className="form-element-group">
+      <div className="dynamic-form-element-group">
         <label htmlFor={name}>{name}</label>
         <br />
         <select onChange={handleInputValueChange}>
@@ -47,7 +47,7 @@ export default ({ name, handleInputValueChange }) => {
     );
   } else if (name === "password" || name === "password_confirmation") {
     return (
-      <div className="form-element-group">
+      <div className="dynamic-form-element-group">
         <label htmlFor={name}>{name}</label>
         <input
           type="password"
@@ -60,7 +60,7 @@ export default ({ name, handleInputValueChange }) => {
     );
   } else {
     return (
-      <div className="form-element-group">
+      <div className="dynamic-form-element-group">
         <label htmlFor={name}>{name}</label>
         <input
           type="text"

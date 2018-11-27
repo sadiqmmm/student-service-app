@@ -252,7 +252,6 @@ export default class DataDetail extends Component {
             name={header}
             handleInputValueChange={e => this.handleInputValueChange(e, header)}
           />
-          <hr />
         </div>
       );
     });
