@@ -3,6 +3,7 @@ import axios from "axios";
 
 import DashboardNavigation from "../partials/navigation";
 import SingleRecordListItem from "../partials/single-record-list-item";
+import ApiKey from "../partials/api-key";
 
 export default class WhiteListedLinks extends Component {
   constructor() {
@@ -104,6 +105,8 @@ export default class WhiteListedLinks extends Component {
     return (
       <div>
         <DashboardNavigation />
+
+        <ApiKey />
 
         <div className="card">
           <h2>White List Links</h2>
