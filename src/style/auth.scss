@@ -2,7 +2,7 @@
 
 .auth-card {
   width: 362px !important;
-  height: 550px !important;
+  height: 600px !important;
 
   .metadata {
     height: 100px !important;
@@ -16,7 +16,6 @@
     margin-top: 110px;
 
     .form-wrapper {
-      height: 450px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -36,6 +35,14 @@
             color: $charcoal;
           }
         }
+      }
+
+      .form-buttons-wrapper {
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        align-self: center;
+        margin-bottom: 15px;
       }
     }
   }
