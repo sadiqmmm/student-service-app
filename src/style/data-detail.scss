@@ -58,23 +58,37 @@
 .list-headers-7 {
   @include list-item();
   @include list-header();
-  grid-template-columns: 20px 15% 15% 15% 15% 15% 15%;
+  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;
 }
 
 .dynamic-row-7 {
   @include list-item();
   @include data-item();
-  grid-template-columns: 20px 15% 15% 15% 15% 15% 15%;
+  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;
 }
 
 .list-headers-8 {
   @include list-item();
   @include list-header();
-  grid-template-columns: 20px 14% 14% 14% 14% 14% 14% 40px;
+  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
 }
 
 .dynamic-row-8 {
   @include list-item();
   @include data-item();
-  grid-template-columns: 20px 14% 14% 14% 14% 14% 14% 40px;
+  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+}
+
+.list-headers-9 {
+  @include list-item();
+  @include list-header();
+  grid-template-columns: 11% 11% 11% 11% 11% 11% 11% 11% 11%;
+  padding-right: 30px;
+}
+
+.dynamic-row-9 {
+  @include list-item();
+  @include data-item();
+  grid-template-columns: 11% 11% 11% 11% 11% 11% 11% 11% 11%;
+  padding-right: 30px;
 }
