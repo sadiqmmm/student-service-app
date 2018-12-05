@@ -5,7 +5,18 @@ const DataItem = props => {
 
   const rowData = props.data.slice(0, -1).map((column, idx) => {
     if (urlMatcher.test(column)) {
-      return <img key={idx} src={column} style={{ width: "100%" }} />;
+      return (
+        <img
+          key={idx}
+          src={column}
+          style={{
+            width: "80px",
+            borderRadius: "50%",
+            objectFit: "cover",
+            height: "80px"
+          }}
+        />
+      );
     } else {
       return <div key={idx}>{column || "null"}</div>;
     }

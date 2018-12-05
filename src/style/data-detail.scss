@@ -92,3 +92,17 @@
   grid-template-columns: 11% 11% 11% 11% 11% 11% 11% 11% 11%;
   padding-right: 30px;
 }
+
+.list-headers-10 {
+  @include list-item();
+  @include list-header();
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  padding-right: 90px;
+}
+
+.dynamic-row-10 {
+  @include list-item();
+  @include data-item();
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  padding-right: 90px;
+}
