@@ -107,27 +107,11 @@ export default class DataDetail extends Component {
 
   dataList() {
     return this.state.projectData.items.map(item => {
-      console.log("delete", item);
-
-      let id;
-
-      Object.keys(item).filter(item_key => {
-        if (item_key.match("_id")) {
-          const key_name = item_key.match("_id").input;
-          id = item[key_name];
-          console.log("first ID", id);
-        } else if (item_key.match("id")) {
-          const key_name = item_key.match("id").input;
-          id = item[key_name];
-          console.log("second ID", id);
-        }
-      });
-
       return (
         <DataItem
-          key={id}
+          key={item.id}
           data={Object.values(item)}
-          handleRecordDelete={e => this.handleRecordDelete(e, id)}
+          handleRecordDelete={e => this.handleRecordDelete(e, item.id)}
         />
       );
     });
@@ -145,11 +129,6 @@ export default class DataDetail extends Component {
       .then(response => {
         const collectionReceived =
           response.data[this.state.projectDataEndpoint];
-
-        // TODO
-        // Fix error with projects (and users)
-
-        console.log("collectionReceived", collectionReceived);
 
         if (collectionReceived.length === 1 && collectionReceived.id === null) {
           this.setState({

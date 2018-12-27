@@ -3,6 +3,11 @@ import React from "react";
 const DataItem = props => {
   const urlMatcher = /(https?:\/\/.*\.(?:png|jpg))/i;
 
+  const stringTruncate = (str, length) => {
+    const dots = str.length > length ? "..." : "";
+    return str.substring(0, length) + dots;
+  };
+
   const rowData = props.data.slice(0, -1).map((column, idx) => {
     if (urlMatcher.test(column)) {
       return (
@@ -18,7 +23,12 @@ const DataItem = props => {
         />
       );
     } else {
-      return <div key={idx}>{column || "null"}</div>;
+      console.log("columnnnnnnnnn", column);
+      return (
+        <div key={idx}>
+          {(column && stringTruncate(column.toString(), 20)) || "null"}
+        </div>
+      );
     }
   });
 
