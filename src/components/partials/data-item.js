@@ -23,7 +23,6 @@ const DataItem = props => {
         />
       );
     } else {
-      console.log("columnnnnnnnnn", column);
       return (
         <div key={idx}>
           {(column && stringTruncate(column.toString(), 20)) || "null"}
