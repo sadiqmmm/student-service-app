@@ -1,0 +1,17 @@
+.validation-warning-text {
+  color: $warning;
+  font-weight: 900;
+  font-size: 0.8em;
+  font-family: "Ubuntu", sans-serif;
+  text-transform: uppercase;
+  margin-top: -15px;
+}
+
+.validation-valid-text {
+  color: $teal;
+  font-weight: 900;
+  font-size: 0.8em;
+  font-family: "Ubuntu", sans-serif;
+  text-transform: uppercase;
+  margin-top: -15px;
+}

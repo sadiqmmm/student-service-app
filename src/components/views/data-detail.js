@@ -107,13 +107,15 @@ export default class DataDetail extends Component {
 
   dataList() {
     return this.state.projectData.items.map(item => {
-      return (
-        <DataItem
-          key={item.id}
-          data={Object.values(item)}
-          handleRecordDelete={e => this.handleRecordDelete(e, item.id)}
-        />
-      );
+      if (item) {
+        return (
+          <DataItem
+            key={item.id}
+            data={Object.values(item)}
+            handleRecordDelete={e => this.handleRecordDelete(e, item.id)}
+          />
+        );
+      }
     });
   }
 
