@@ -10,7 +10,8 @@ export default class Registration extends Component {
       password_confirmation: "",
       subdomain: "",
       emailValidationState: "NEED_MORE",
-      subdomainValidationState: "NEED_MORE"
+      subdomainValidationState: "NEED_MORE",
+      errorText: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -69,6 +70,9 @@ export default class Registration extends Component {
         this.props.handleSuccessfulAuth(response.data);
       })
       .catch(error => {
+        this.setState({
+          errorText: "An error occured, please try again."
+        });
         this.props.handleUnSuccessfulAuth(error);
       });
 
@@ -87,6 +91,12 @@ export default class Registration extends Component {
 
           <div className="auth-form">
             <form onSubmit={this.handleSubmit} className="form-wrapper">
+              {this.state.errorText ? (
+                <div className="validation-warning-text">
+                  {this.state.errorText}
+                  <div className="spacer30" />
+                </div>
+              ) : null}
               <div className="input-elements">
                 <div className="form-element-group">
                   <label htmlFor="register-email">Email</label>
