@@ -77,8 +77,9 @@ export default class DataDetail extends Component {
   handleRecordDelete(event, id) {
     axios
       .delete(
-        `https://${this.getSubdomain()}.devcamp.space/${this.state.project
-          .route_namespace}/${this.state.projectDataEndpoint}/${id}`,
+        `https://${this.getSubdomain()}.devcamp.space/${
+          this.state.project.route_namespace
+        }/${this.state.projectDataEndpoint}/${id}`,
         {
           withCredentials: true
         }
@@ -122,8 +123,9 @@ export default class DataDetail extends Component {
   getData() {
     axios
       .get(
-        `https://${this.getSubdomain()}.devcamp.space/${this.state.project
-          .route_namespace}/${this.state.projectDataEndpoint}`,
+        `https://${this.getSubdomain()}.devcamp.space/${
+          this.state.project.route_namespace
+        }/${this.state.projectDataEndpoint}`,
         {
           withCredentials: true
         }
@@ -163,7 +165,11 @@ export default class DataDetail extends Component {
         ]
       ) {
         continue;
-      } else {
+      } else if (
+        this.state[
+          `${this.state.projectDataEndpoint.slice(0, -1)}[${formAttribute}]`
+        ]
+      ) {
         formData.append(
           `${this.state.projectDataEndpoint.slice(0, -1)}[${formAttribute}]`,
           this.state[
@@ -179,8 +185,9 @@ export default class DataDetail extends Component {
     const dataModelName = this.state.projectDataEndpoint.slice(0, -1);
     axios
       .post(
-        `https://${this.getSubdomain()}.devcamp.space/${this.state.project
-          .route_namespace}/${this.state.projectDataEndpoint}`,
+        `https://${this.getSubdomain()}.devcamp.space/${
+          this.state.project.route_namespace
+        }/${this.state.projectDataEndpoint}`,
         this.buildForm(),
         {
           withCredentials: true
@@ -282,11 +289,9 @@ export default class DataDetail extends Component {
         <div className="card">
           <div
             className={
-              recordsInDatabase ? (
-                `list-headers-${this.state.projectData.headers.length + 1}`
-              ) : (
-                ""
-              )
+              recordsInDatabase
+                ? `list-headers-${this.state.projectData.headers.length + 1}`
+                : ""
             }
           >
             {recordsInDatabase ? headers : ""}
