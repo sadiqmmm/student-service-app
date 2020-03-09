@@ -59,6 +59,8 @@ export default class DataDetail extends Component {
         }
       )
       .then(response => {
+        console.log("PROJECT DETAILS", response.data);
+
         this.setState({
           project: response.data.project,
           isLoading: false
@@ -121,16 +123,18 @@ export default class DataDetail extends Component {
   }
 
   getData() {
+    const url = `https://${this.getSubdomain()}.devcamp.space/${
+      this.state.project.route_namespace
+    }/${this.state.projectDataEndpoint}`;
+
+    console.log("URL", url);
+
     axios
-      .get(
-        `https://${this.getSubdomain()}.devcamp.space/${
-          this.state.project.route_namespace
-        }/${this.state.projectDataEndpoint}`,
-        {
-          withCredentials: true
-        }
-      )
+      .get(url, {
+        withCredentials: true
+      })
       .then(response => {
+        console.log("response for getData", response.data);
         const collectionReceived =
           response.data[this.state.projectDataEndpoint];
 
