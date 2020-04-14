@@ -20,8 +20,8 @@ export default class DataDetail extends Component {
       projectDataEndpoint: this.props.match.params.table_name,
       projectData: {
         headers: [],
-        items: []
-      }
+        items: [],
+      },
     };
 
     this.getProjectDetails = this.getProjectDetails.bind(this);
@@ -37,7 +37,7 @@ export default class DataDetail extends Component {
 
   componentDidMount() {
     loggedIn()
-      .then(res => {
+      .then((res) => {
         if (res.logged_in) {
           this.setState({ currentClient: res.current_client });
           this.getProjectDetails();
@@ -45,7 +45,7 @@ export default class DataDetail extends Component {
           this.props.history.push("/");
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("not signed in", error);
       });
   }
@@ -55,19 +55,19 @@ export default class DataDetail extends Component {
       .get(
         `https://api.devcamp.space/projects/${this.props.match.params.slug}`,
         {
-          withCredentials: true
+          withCredentials: true,
         }
       )
-      .then(response => {
+      .then((response) => {
         console.log("PROJECT DETAILS", response.data);
 
         this.setState({
           project: response.data.project,
-          isLoading: false
+          isLoading: false,
         });
         this.getData();
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Errors");
       });
   }
@@ -83,12 +83,12 @@ export default class DataDetail extends Component {
           this.state.project.route_namespace
         }/${this.state.projectDataEndpoint}/${id}`,
         {
-          withCredentials: true
+          withCredentials: true,
         }
       )
-      .then(response => {
+      .then((response) => {
         const filteredRecords = this.state.projectData.items.filter(
-          dataRecord => {
+          (dataRecord) => {
             return dataRecord.id !== id;
           }
         );
@@ -96,26 +96,26 @@ export default class DataDetail extends Component {
         this.setState({
           projectData: {
             headers: this.state.projectData.headers,
-            items: [...filteredRecords]
-          }
+            items: [...filteredRecords],
+          },
         });
 
         return response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
     event.preventDefault();
   }
 
   dataList() {
-    return this.state.projectData.items.map(item => {
+    return this.state.projectData.items.map((item) => {
       if (item) {
         return (
           <DataItem
             key={item.id}
             data={Object.values(item)}
-            handleRecordDelete={e => this.handleRecordDelete(e, item.id)}
+            handleRecordDelete={(e) => this.handleRecordDelete(e, item.id)}
           />
         );
       }
@@ -131,9 +131,9 @@ export default class DataDetail extends Component {
 
     axios
       .get(url, {
-        withCredentials: true
+        withCredentials: true,
       })
-      .then(response => {
+      .then((response) => {
         console.log("response for getData", response.data);
         const collectionReceived =
           response.data[this.state.projectDataEndpoint];
@@ -142,19 +142,19 @@ export default class DataDetail extends Component {
           this.setState({
             projectData: {
               items: [],
-              headers: collectionReceived[0]["column_names_merged_with_images"]
-            }
+              headers: collectionReceived[0]["column_names_merged_with_images"],
+            },
           });
         } else {
           this.setState({
             projectData: {
               items: [...collectionReceived],
-              headers: collectionReceived[0]["column_names_merged_with_images"]
-            }
+              headers: collectionReceived[0]["column_names_merged_with_images"],
+            },
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Errors", error);
       });
   }
@@ -194,31 +194,37 @@ export default class DataDetail extends Component {
         }/${this.state.projectDataEndpoint}`,
         this.buildForm(),
         {
-          withCredentials: true
+          withCredentials: true,
         }
       )
-      .then(response => {
-        this.setState({
-          projectData: {
-            headers: this.state.projectData.headers,
-            items: [
-              ...this.state.projectData.items,
-              response.data[dataModelName]
-            ]
-          }
-        });
+      .then((response) => {
+        if (response.data.errors) {
+          alert("Validation error: " + JSON.stringify(response.data.errors));
+        } else {
+          this.setState({
+            projectData: {
+              headers: this.state.projectData.headers,
+              items: [
+                ...this.state.projectData.items,
+                response.data[dataModelName],
+              ],
+            },
+          });
 
-        this.clearForm();
+          this.clearForm();
+        }
         return response.data;
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+        alert(
+          "An error occurred, please make sure all of the fields are filled out properly"
+        );
       });
     event.preventDefault();
   }
 
   allowableFormAttributes() {
-    return this.state.projectData.headers.filter(header => {
+    return this.state.projectData.headers.filter((header) => {
       if (header !== "id") {
         return header;
       }
@@ -230,35 +236,37 @@ export default class DataDetail extends Component {
 
     if (event.target.files) {
       this.setState({
-        [`${dataModelName}[${name}]`]: event.target.files[0]
+        [`${dataModelName}[${name}]`]: event.target.files[0],
       });
     } else {
       this.setState({
-        [`${dataModelName}[${name}]`]: event.target.value
+        [`${dataModelName}[${name}]`]: event.target.value,
       });
     }
   }
 
   clearForm() {
-    Object.keys(this.state).forEach(stateItem => {
+    Object.keys(this.state).forEach((stateItem) => {
       if (stateItem.startsWith(this.state.projectDataEndpoint.slice(0, -1))) {
         this.setState({ [stateItem]: "" });
       }
     });
 
-    document.querySelectorAll(".data-input").forEach(el => {
+    document.querySelectorAll(".data-input").forEach((el) => {
       el.value = "";
     });
   }
 
   inputElements() {
-    return this.allowableFormAttributes().map(header => {
+    return this.allowableFormAttributes().map((header) => {
       return (
         <div>
           <DataInputElement
             key={header}
             name={header}
-            handleInputValueChange={e => this.handleInputValueChange(e, header)}
+            handleInputValueChange={(e) =>
+              this.handleInputValueChange(e, header)
+            }
           />
         </div>
       );
@@ -275,13 +283,13 @@ export default class DataDetail extends Component {
       language,
       white_logo,
       slug,
-      route_namespace
+      route_namespace,
     } = this.state.project;
     const { subdomain } = this.state.currentClient;
 
     const recordsInDatabase = this.state.projectData.items.length > 0;
 
-    const headers = this.state.projectData.headers.map(header => {
+    const headers = this.state.projectData.headers.map((header) => {
       return <span key={header}>{header}</span>;
     });
 
